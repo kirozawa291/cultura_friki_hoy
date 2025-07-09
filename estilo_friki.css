@@ -1,23 +1,22 @@
 body {
-  background-color: #fff6e5;
-  color: #3b2e2a;
-  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #fdf6e3;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
   margin: 0;
-  padding: 0 20px;
-  line-height: 1.6;
+  padding: 0;
 }
 
 h1 {
-  background-color: #ffb347;
-  color: #fff;
-  text-align: center;
+  background-color: #ffcb6b;
+  color: #2e2e2e;
   padding: 20px;
+  text-align: center;
   margin: 0;
 }
 
 nav {
-  background-color: #f76c6c;
-  padding: 10px 0;
+  background-color: #ffab40;
+  padding: 10px;
   text-align: center;
 }
 
@@ -26,30 +25,31 @@ nav a {
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #333;
+  background: #ffd180;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 h2 {
-  color: #d64545;
-  margin-top: 40px;
+  color: #d84315;
+  margin: 20px 10px 10px;
 }
 
 p {
-  font-size: 1.1em;
-  background-color: #fff9f0;
-  padding: 10px;
-  border-radius: 8px;
+  margin: 0 10px 20px;
+  line-height: 1.6;
 }
 
 img {
-  width: 100%;
-  max-width: 400px;
-  margin-top: 10px;
+  display: block;
+  max-width: 90%;
+  height: auto;
+  margin: 10px auto;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 40px 0;
+  box-shadow: 0 0 10px #ccc;
 }
