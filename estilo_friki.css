@@ -1,0 +1,27 @@
+/* estilo_friki.css */
+body {
+  background-color: #1a1a1a;
+  color: #f8f8f2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #ff79c6;
+  text-align: center;
+}
+
+h2 {
+  color: #8be9fd;
+}
+
+p {
+  font-size: 1.1em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 20px 0;
+}
