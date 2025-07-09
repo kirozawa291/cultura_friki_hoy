@@ -1,27 +1,55 @@
-/* estilo_friki.css */
 body {
-  background-color: #1a1a1a;
-  color: #f8f8f2;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 20px;
+  background-color: #fff6e5;
+  color: #3b2e2a;
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0 20px;
   line-height: 1.6;
 }
 
 h1 {
-  color: #ff79c6;
+  background-color: #ffb347;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+nav {
+  background-color: #f76c6c;
+  padding: 10px 0;
   text-align: center;
 }
 
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
 h2 {
-  color: #8be9fd;
+  color: #d64545;
+  margin-top: 40px;
 }
 
 p {
   font-size: 1.1em;
+  background-color: #fff9f0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+img {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
 hr {
   border: none;
-  border-top: 1px solid #444;
-  margin: 20px 0;
+  border-top: 1px solid #ccc;
+  margin: 40px 0;
 }
