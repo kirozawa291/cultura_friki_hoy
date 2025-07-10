@@ -46,8 +46,11 @@ hr {
 }
 
 h2 {
-  color: #6b0f1a;
-  padding: 0 1rem;
+  max-width: 90%;
+  word-wrap: break-word;
+  margin: auto;
+  color: #6b2c2c;
+  font-size: 1.4rem;
 }
 
 p {
