@@ -1,0 +1,120 @@
+body {
+  background: linear-gradient(135deg, #ffe0c3, #ffc2d1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  padding: 1rem;
+  font-size: 2.5rem;
+  color: #6b0f1a;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0;
+  border-bottom: 3px solid #ff99aa;
+}
+
+/* MENÚ PRINCIPAL */
+nav {
+  background: linear-gradient(to right, #f9c5d1, #fddde6);
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu > li {
+  position: relative;
+}
+
+.menu > li > a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  color: #3a3a3a;
+  background-color: #ffeaea;
+  border-radius: 8px;
+  transition: background 0.3s;
+  display: inline-block;
+}
+
+.menu > li > a:hover {
+  background-color: #ffc2d1;
+}
+
+/* SUBMENÚ */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff0f5;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 999;
+  min-width: 160px;
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu li a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  display: block;
+  white-space: nowrap;
+}
+
+.submenu li a:hover {
+  background-color: #ffe0eb;
+}
+
+/* Mostrar submenú */
+.menu li:hover .submenu {
+  display: block;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: #d6336c;
+  margin: 2rem 0;
+}
+
+h2 {
+  max-width: 90%;
+  word-wrap: break-word;
+  margin: auto;
+  color: #6b2c2c;
+  font-size: 1.4rem;
+}
+
+p {
+  padding: 0 1rem 1rem;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.03);
+}
