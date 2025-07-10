@@ -16,26 +16,74 @@ h1 {
   border-bottom: 3px solid #ff99aa;
 }
 
+/* MENÚ PRINCIPAL */
 nav {
+  background: linear-gradient(to right, #f9c5d1, #fddde6);
+  padding: 10px 0;
   display: flex;
   justify-content: center;
-  background-color: #ff99aa;
-  padding: 1rem 0;
   flex-wrap: wrap;
-  gap: 1rem;
 }
 
-nav a {
-  color: white;
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu > li {
+  position: relative;
+}
+
+.menu > li > a {
   text-decoration: none;
   padding: 0.5rem 1rem;
-  background-color: #d6336c;
-  border-radius: 20px;
-  transition: background 0.3s ease;
+  color: #3a3a3a;
+  background-color: #ffeaea;
+  border-radius: 8px;
+  transition: background 0.3s;
+  display: inline-block;
 }
 
-nav a:hover {
-  background-color: #a61e4d;
+.menu > li > a:hover {
+  background-color: #ffc2d1;
+}
+
+/* SUBMENÚ */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff0f5;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 999;
+  min-width: 160px;
+}
+
+.submenu li {
+  list-style: none;
+}
+
+.submenu li a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+  display: block;
+  white-space: nowrap;
+}
+
+.submenu li a:hover {
+  background-color: #ffe0eb;
+}
+
+/* Mostrar submenú */
+.menu li:hover .submenu {
+  display: block;
 }
 
 hr {
@@ -69,63 +117,4 @@ img {
 
 img:hover {
   transform: scale(1.03);
-}
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  background: linear-gradient(to right, #f9c5d1, #fddde6);
-  padding: 10px 0;
-}
-
-.menu > li {
-  position: relative;
-}
-
-.menu > li > a {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  color: #3a3a3a;
-  background-color: #ffeaea;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
-
-.menu > li > a:hover {
-  background-color: #ffc2d1;
-}
-
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff0f5;
-  border-radius: 10px;
-  padding: 0.5rem 0;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  z-index: 10;
-  min-width: 160px;
-}
-
-.submenu li {
-  list-style: none;
-}
-
-.submenu li a {
-  text-decoration: none;
-  color: #333;
-  padding: 0.5rem 1rem;
-  display: block;
-}
-
-.submenu li a:hover {
-  background-color: #ffe0eb;
-}
-
-.menu li:hover .submenu {
-  display: block;
 }
