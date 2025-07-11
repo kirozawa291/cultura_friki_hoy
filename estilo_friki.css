@@ -1,41 +1,49 @@
+/* ===== FUENTE ===== */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* === Fondo y cuerpo === */
+/* ===== ESTILO GENERAL ===== */
 body {
-  background-color: #0d0d0d;
-  font-family: 'Press Start 2P', monospace;
-  color: #39ff14;
+  background: linear-gradient(135deg, #0b0b0b, #1a1a1a); /* fondo oscuro tipo NERV */
+  font-family: 'Press Start 2P', cursive;
+  color: #b8f200; /* Verde EVA-01 */
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  animation: fadeIn 1.5s ease forwards;
-  opacity: 0;
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* === Encabezado === */
+/* ===== ANIMACIÓN DE ENTRADA ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== ENCABEZADO ===== */
 h1 {
-  background-color: #3a3a3a;
-  color: #8a2be2;
   text-align: center;
-  padding: 1.5rem;
-  font-size: 1.8rem;
-  border-bottom: 4px solid #39ff14;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #9400d3; /* Morado EVA-01 */
+  background: linear-gradient(to right, #0b0b0b, #1a1a1a);
+  border-bottom: 3px solid #ff004f; /* rojo EVA-02 */
+  text-shadow: 0 0 5px #00ffcc;
 }
 
-/* === Menú === */
+/* ===== MENÚ PRINCIPAL ===== */
 nav {
-  background-color: #1a1a1a;
-  padding: 1rem 0;
+  background: linear-gradient(to right, #2d0036, #002f2d); /* mezcla morado-verde */
+  padding: 10px 0;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .menu {
   list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   gap: 1.5rem;
-  margin: 0;
-  padding: 0;
 }
 
 .menu > li {
@@ -43,100 +51,96 @@ nav {
 }
 
 .menu > li > a {
-  color: #00ff99;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  color: #00ffcc;
   background-color: #222;
-  border: 1px solid #39ff14;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+  border: 2px solid #00ffcc;
+  border-radius: 8px;
+  transition: 0.3s ease;
 }
 
 .menu > li > a:hover {
-  background-color: #8a2be2;
-  color: #ffffff;
-  box-shadow: 0 0 10px #39ff14;
+  background-color: #00ffcc;
+  color: #000;
+  box-shadow: 0 0 10px #00ffcc;
 }
 
-/* === Submenú === */
+/* ===== SUBMENÚ ===== */
 .submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #1f1f1f;
-  border: 1px solid #39ff14;
-  border-radius: 5px;
+  background-color: #111;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  box-shadow: 0 0 10px #00ffcc;
   z-index: 999;
   min-width: 160px;
 }
 
+.submenu li {
+  list-style: none;
+}
+
 .submenu li a {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: #39ff14;
   text-decoration: none;
-  transition: background 0.3s;
+  color: #b8f200;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: background 0.3s ease;
 }
 
 .submenu li a:hover {
-  background-color: #00ff99;
-  color: #0d0d0d;
+  background-color: #222;
+  color: #00ffcc;
 }
 
+/* Mostrar submenú */
 .menu li:hover .submenu {
   display: block;
 }
 
-/* === Noticias y títulos === */
+/* ===== NOTICIAS ===== */
 h2 {
+  max-width: 90%;
+  margin: 2rem auto 0.5rem;
+  color: #ff004f;
+  font-size: 1.2rem;
   text-align: center;
-  color: #ff33cc;
-  font-size: 1.1rem;
-  margin-top: 2rem;
+  border-bottom: 1px solid #00ffcc;
+  padding-bottom: 0.5rem;
 }
 
 p {
-  color: #dddddd;
-  padding: 1rem;
-  max-width: 900px;
-  margin: auto;
+  max-width: 90%;
+  margin: 0 auto 2rem;
+  color: #eee;
+  text-align: center;
 }
 
-/* === Imágenes === */
+/* ===== IMÁGENES ===== */
 img {
   display: block;
   margin: 1rem auto;
-  border-radius: 8px;
   max-width: 90%;
-  box-shadow: 0 0 12px #39ff14;
-  transition: transform 0.3s;
+  border-radius: 10px;
+  border: 2px solid #00ffcc;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+  transition: transform 0.3s ease;
 }
 
 img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* === Separadores === */
-hr {
-  border: none;
-  height: 2px;
-  background: linear-gradient(to right, #8a2be2, #39ff14);
-  margin: 2rem auto;
-  width: 80%;
-}
-
-/* === Footer === */
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
-  color: #888;
-  padding: 2rem 0;
-  font-size: 0.7rem;
-}
-
-/* === Animación === */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+  padding: 2rem;
+  background-color: #111;
+  color: #666;
+  font-size: 0.8rem;
+  border-top: 2px solid #00ffcc;
 }
