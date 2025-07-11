@@ -1,11 +1,16 @@
+/* ===== Fondo y estilo general ===== */
 body {
   background: linear-gradient(135deg, #ffe0c3, #ffc2d1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   color: #333;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  opacity: 0;
+  animation: aparecer 1.2s ease forwards;
 }
 
+/* ===== Encabezado principal ===== */
 h1 {
   text-align: center;
   padding: 1rem;
@@ -16,7 +21,7 @@ h1 {
   border-bottom: 3px solid #ff99aa;
 }
 
-/* MENÚ PRINCIPAL */
+/* ===== Menú principal ===== */
 nav {
   background: linear-gradient(to right, #f9c5d1, #fddde6);
   padding: 10px 0;
@@ -43,15 +48,17 @@ nav {
   color: #3a3a3a;
   background-color: #ffeaea;
   border-radius: 8px;
-  transition: background 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
   display: inline-block;
 }
 
 .menu > li > a:hover {
   background-color: #ffc2d1;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ff99aa;
 }
 
-/* SUBMENÚ */
+/* ===== Submenú ===== */
 .submenu {
   display: none;
   position: absolute;
@@ -75,17 +82,19 @@ nav {
   padding: 0.5rem 1rem;
   display: block;
   white-space: nowrap;
+  transition: background 0.3s ease;
 }
 
 .submenu li a:hover {
   background-color: #ffe0eb;
 }
 
-/* Mostrar submenú */
+/* Mostrar submenú al pasar mouse */
 .menu li:hover .submenu {
   display: block;
 }
 
+/* ===== Separador ===== */
 hr {
   border: none;
   height: 2px;
@@ -93,28 +102,45 @@ hr {
   margin: 2rem 0;
 }
 
+/* ===== Titulares secundarios ===== */
 h2 {
   max-width: 90%;
   word-wrap: break-word;
   margin: auto;
   color: #6b2c2c;
   font-size: 1.4rem;
+  transition: all 0.3s ease-in-out;
 }
 
+h2:hover {
+  color: #ff69b4;
+  text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff99aa;
+}
+
+/* ===== Párrafos ===== */
 p {
   padding: 0 1rem 1rem;
   line-height: 1.6;
 }
 
+/* ===== Imágenes ===== */
 img {
   display: block;
   margin: 0 auto 1rem;
   max-width: 90%;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+}
+
+/* ===== Animación al cargar página ===== */
+@keyframes aparecer {
+  to {
+    opacity: 1;
+  }
 }
