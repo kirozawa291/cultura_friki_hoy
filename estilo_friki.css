@@ -1,18 +1,17 @@
-/* ===== FUENTE ===== */
+/* ===== FUENTE RETRO ELEGANTE ===== */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* ===== ESTILO GENERAL ===== */
+/* ===== BASE GENERAL ===== */
 body {
-  background: linear-gradient(135deg, #0b0b0b, #1a1a1a); /* fondo oscuro tipo NERV */
+  background-color: #0d0d0d;
   font-family: 'Press Start 2P', cursive;
-  color: #b8f200; /* Verde EVA-01 */
+  color: #e4e4e4;
   margin: 0;
   padding: 0;
   line-height: 1.6;
   animation: fadeIn 1s ease-in-out;
 }
 
-/* ===== ANIMACIÓN DE ENTRADA ===== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -21,18 +20,18 @@ body {
 /* ===== ENCABEZADO ===== */
 h1 {
   text-align: center;
-  padding: 1rem;
-  font-size: 1.5rem;
-  color: #9400d3; /* Morado EVA-01 */
-  background: linear-gradient(to right, #0b0b0b, #1a1a1a);
-  border-bottom: 3px solid #ff004f; /* rojo EVA-02 */
-  text-shadow: 0 0 5px #00ffcc;
+  padding: 1.5rem 1rem;
+  font-size: 1.2rem;
+  color: #b983ff; /* Morado EVA-01 más suave */
+  background-color: #1a1a1a;
+  border-bottom: 2px solid #4b4453;
+  text-shadow: 0 0 2px #4b4453;
 }
 
 /* ===== MENÚ PRINCIPAL ===== */
 nav {
-  background: linear-gradient(to right, #2d0036, #002f2d); /* mezcla morado-verde */
-  padding: 10px 0;
+  background: #1a1a1a;
+  padding: 1rem 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -43,7 +42,7 @@ nav {
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .menu > li {
@@ -52,18 +51,18 @@ nav {
 
 .menu > li > a {
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  color: #00ffcc;
-  background-color: #222;
-  border: 2px solid #00ffcc;
-  border-radius: 8px;
-  transition: 0.3s ease;
+  padding: 0.6rem 1.2rem;
+  color: #d0f0c0; /* Verde mate tipo EVA-01 */
+  background-color: #2c2c2c;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .menu > li > a:hover {
-  background-color: #00ffcc;
-  color: #000;
-  box-shadow: 0 0 10px #00ffcc;
+  background-color: #373737;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
 }
 
 /* ===== SUBMENÚ ===== */
@@ -72,10 +71,10 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #111;
-  border-radius: 10px;
+  background-color: #1a1a1a;
+  border-radius: 6px;
   padding: 0.5rem 0;
-  box-shadow: 0 0 10px #00ffcc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
   z-index: 999;
   min-width: 160px;
 }
@@ -86,15 +85,16 @@ nav {
 
 .submenu li a {
   text-decoration: none;
-  color: #b8f200;
+  color: #e4e4e4;
   padding: 0.5rem 1rem;
   display: block;
+  white-space: nowrap;
   transition: background 0.3s ease;
 }
 
 .submenu li a:hover {
-  background-color: #222;
-  color: #00ffcc;
+  background-color: #333;
+  color: #b983ff;
 }
 
 /* Mostrar submenú */
@@ -102,21 +102,23 @@ nav {
   display: block;
 }
 
-/* ===== NOTICIAS ===== */
+/* ===== TITULARES DE NOTICIAS ===== */
 h2 {
   max-width: 90%;
   margin: 2rem auto 0.5rem;
-  color: #ff004f;
-  font-size: 1.2rem;
+  color: #ff6b6b; /* rojo suave EVA-02 */
+  font-size: 1rem;
   text-align: center;
-  border-bottom: 1px solid #00ffcc;
+  border-bottom: 1px solid #3a3a3a;
   padding-bottom: 0.5rem;
 }
 
+/* ===== PÁRRAFOS ===== */
 p {
   max-width: 90%;
   margin: 0 auto 2rem;
-  color: #eee;
+  color: #ccc;
+  font-size: 0.75rem;
   text-align: center;
 }
 
@@ -125,22 +127,22 @@ img {
   display: block;
   margin: 1rem auto;
   max-width: 90%;
-  border-radius: 10px;
-  border: 2px solid #00ffcc;
-  box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+  border-radius: 8px;
+  border: 1px solid #333;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
 img:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
-/* ===== FOOTER ===== */
+/* ===== PIE DE PÁGINA ===== */
 footer {
   text-align: center;
-  padding: 2rem;
-  background-color: #111;
+  padding: 1rem;
+  background-color: #1a1a1a;
   color: #666;
-  font-size: 0.8rem;
-  border-top: 2px solid #00ffcc;
+  font-size: 0.6rem;
+  border-top: 1px solid #333;
 }
