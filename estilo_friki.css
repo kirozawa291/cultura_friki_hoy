@@ -1,32 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* ===== CONFIGURACIÓN GLOBAL ===== */
+/* ===== Fondo y tipografía general ===== */
 body {
-  background: linear-gradient(135deg, #ffe0c3, #ffc2d1);
-  font-family: 'Press Start 2P', monospace;
+  background: linear-gradient(135deg, #f5f0e6, #e9dbc9);
+  font-family: 'Press Start 2P', cursive;
   margin: 0;
   padding: 0;
-  color: #333;
-  font-size: 10px;
+  color: #4e3629;
   opacity: 0;
-  animation: aparecer 1.2s ease forwards;
+  animation: fadeIn 1.2s ease forwards;
 }
 
-/* ===== ENCABEZADO PRINCIPAL ===== */
+/* ===== Encabezado ===== */
 h1 {
   text-align: center;
-  padding: 1.5rem 1rem;
-  font-size: 1.2rem;
-  color: #6b0f1a;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-bottom: 3px solid #ff99aa;
-  margin: 0;
+  padding: 1.5rem;
+  font-size: 1.4rem;
+  color: #2c1b0f;
+  background-color: #faeee0;
+  border-bottom: 3px solid #b27f5d;
 }
 
-/* ===== MENÚ PRINCIPAL ===== */
+/* ===== Menú principal ===== */
 nav {
-  background: linear-gradient(to right, #f9c5d1, #fddde6);
-  padding: 10px 0;
+  background: linear-gradient(to right, #f3e5d0, #fcebd5);
+  padding: 12px 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -34,10 +32,10 @@ nav {
 
 .menu {
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
 }
 
 .menu > li {
@@ -45,87 +43,78 @@ nav {
 }
 
 .menu > li > a {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-decoration: none;
-  padding: 0.4rem 0.8rem;
-  color: #3a3a3a;
-  background-color: #ffeaea;
+  padding: 0.6rem 1rem;
+  background-color: #e8c5a5;
+  color: #2e1c0f;
   border-radius: 6px;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .menu > li > a:hover {
-  background-color: #ffc2d1;
+  background-color: #d9ae85;
   transform: scale(1.05);
 }
 
-/* ===== SUBMENÚ ===== */
+/* ===== Submenú ===== */
 .submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #fff0f5;
-  border-radius: 6px;
+  background-color: #fffaf3;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   padding: 0.5rem 0;
-  box-shadow: none;
-  z-index: 999;
+  z-index: 99;
   min-width: 160px;
 }
 
+.submenu li {
+  list-style: none;
+}
+
 .submenu li a {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.6rem;
   text-decoration: none;
-  color: #333;
+  color: #4e3629;
+  font-size: 0.7rem;
   padding: 0.5rem 1rem;
   display: block;
   white-space: nowrap;
 }
 
 .submenu li a:hover {
-  background-color: #ffe0eb;
+  background-color: #f0dcc2;
 }
 
 .menu li:hover .submenu {
   display: block;
 }
 
-/* ===== SEPARADOR ===== */
-hr {
-  border: none;
-  height: 2px;
-  background-color: #d6336c;
-  margin: 2rem 0;
-}
-
-/* ===== TITULARES SECUNDARIOS ===== */
+/* ===== Titulares secundarios ===== */
 h2 {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.9rem;
-  color: #6b2c2c;
+  font-size: 1rem;
+  color: #3e2d20;
   text-align: center;
-  margin: 2rem auto 1rem;
-  max-width: 90%;
+  margin: 2rem 0 1rem;
 }
 
-/* ===== PÁRRAFOS ===== */
+/* ===== Texto y párrafos ===== */
 p {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.6rem;
-  padding: 1rem;
-  line-height: 1.4;
+  padding: 0 1rem 1rem;
+  line-height: 1.6;
+  font-size: 0.65rem;
   text-align: justify;
 }
 
-/* ===== IMÁGENES ===== */
+/* ===== Imágenes ===== */
 img {
   display: block;
-  margin: 1rem auto;
+  margin: 0 auto 1rem;
   max-width: 90%;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
 }
 
@@ -133,8 +122,24 @@ img:hover {
   transform: scale(1.02);
 }
 
-/* ===== ANIMACIÓN DE ENTRADA ===== */
-@keyframes aparecer {
+/* ===== Separadores ===== */
+hr {
+  border: none;
+  height: 2px;
+  background-color: #d4b48c;
+  margin: 2rem 0;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.6rem;
+  color: #6b4e3e;
+}
+
+/* ===== Animación de entrada ===== */
+@keyframes fadeIn {
   to {
     opacity: 1;
   }
