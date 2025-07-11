@@ -1,31 +1,29 @@
-/* ===== Cargar fuente estilo 8-bit ===== */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* ===== Estilo General ===== */
+/* ===== CONFIGURACIÓN GLOBAL ===== */
 body {
   background: linear-gradient(135deg, #ffe0c3, #ffc2d1);
   font-family: 'Press Start 2P', monospace;
   margin: 0;
   padding: 0;
   color: #333;
-  transition: background-color 0.6s ease, color 0.6s ease;
+  font-size: 10px;
   opacity: 0;
   animation: aparecer 1.2s ease forwards;
-  font-size: 10px; /* Base para todo texto 8-bit */
 }
 
-/* ===== Encabezado Principal ===== */
+/* ===== ENCABEZADO PRINCIPAL ===== */
 h1 {
   text-align: center;
   padding: 1.5rem 1rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #6b0f1a;
   background-color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0;
   border-bottom: 3px solid #ff99aa;
+  margin: 0;
 }
 
-/* ===== Menú Principal ===== */
+/* ===== MENÚ PRINCIPAL ===== */
 nav {
   background: linear-gradient(to right, #f9c5d1, #fddde6);
   padding: 10px 0;
@@ -48,23 +46,21 @@ nav {
 
 .menu > li > a {
   font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
   text-decoration: none;
   padding: 0.4rem 0.8rem;
   color: #3a3a3a;
   background-color: #ffeaea;
   border-radius: 6px;
   transition: background 0.3s ease, transform 0.2s ease;
-  display: inline-block;
-  font-size: 0.8rem;
 }
 
 .menu > li > a:hover {
   background-color: #ffc2d1;
   transform: scale(1.05);
-  box-shadow: none;
 }
 
-/* ===== Submenú ===== */
+/* ===== SUBMENÚ ===== */
 .submenu {
   display: none;
   position: absolute;
@@ -80,11 +76,11 @@ nav {
 
 .submenu li a {
   font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
   text-decoration: none;
   color: #333;
   padding: 0.5rem 1rem;
   display: block;
-  font-size: 0.7rem;
   white-space: nowrap;
 }
 
@@ -96,7 +92,7 @@ nav {
   display: block;
 }
 
-/* ===== Separador ===== */
+/* ===== SEPARADOR ===== */
 hr {
   border: none;
   height: 2px;
@@ -104,28 +100,26 @@ hr {
   margin: 2rem 0;
 }
 
-/* ===== Titulares Secundarios ===== */
+/* ===== TITULARES SECUNDARIOS ===== */
 h2 {
   font-family: 'Press Start 2P', monospace;
-  max-width: 90%;
-  word-wrap: break-word;
-  margin: auto;
+  font-size: 0.9rem;
   color: #6b2c2c;
-  font-size: 1rem;
   text-align: center;
-  padding: 0.5rem;
+  margin: 2rem auto 1rem;
+  max-width: 90%;
 }
 
-/* ===== Párrafos ===== */
+/* ===== PÁRRAFOS ===== */
 p {
   font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
   padding: 1rem;
-  line-height: 1.6;
-  font-size: 0.7rem;
+  line-height: 1.4;
   text-align: justify;
 }
 
-/* ===== Imágenes ===== */
+/* ===== IMÁGENES ===== */
 img {
   display: block;
   margin: 1rem auto;
@@ -136,10 +130,10 @@ img {
 }
 
 img:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
-/* ===== Animación de entrada ===== */
+/* ===== ANIMACIÓN DE ENTRADA ===== */
 @keyframes aparecer {
   to {
     opacity: 1;
