@@ -1,7 +1,10 @@
+/* ===== Cargar fuente estilo 8-bit ===== */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* ===== Fondo y estilo general ===== */
 body {
   background: linear-gradient(135deg, #ffe0c3, #ffc2d1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Press Start 2P', monospace;
   margin: 0;
   padding: 0;
   color: #333;
@@ -14,7 +17,7 @@ body {
 h1 {
   text-align: center;
   padding: 1rem;
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   color: #6b0f1a;
   background-color: rgba(255, 255, 255, 0.8);
   margin-bottom: 0;
@@ -108,7 +111,7 @@ h2 {
   word-wrap: break-word;
   margin: auto;
   color: #6b2c2c;
-  font-size: 1.4rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -121,6 +124,7 @@ h2:hover {
 p {
   padding: 0 1rem 1rem;
   line-height: 1.6;
+  font-size: 0.7rem;
 }
 
 /* ===== Imágenes ===== */
