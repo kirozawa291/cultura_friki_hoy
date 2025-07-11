@@ -1,30 +1,33 @@
+/* ===== Importar fuente 8 bits ===== */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* ===== Fondo y tipografía general ===== */
+/* ===== Fondo y estilo general ===== */
 body {
-  background: linear-gradient(135deg, #f5f0e6, #e9dbc9);
+  background: linear-gradient(135deg, #f3e9dc, #e4d6c0);
   font-family: 'Press Start 2P', cursive;
   margin: 0;
   padding: 0;
-  color: #4e3629;
+  color: #3a2e2e;
+  transition: background-color 0.6s ease, color 0.6s ease;
   opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
+  animation: aparecer 1.2s ease forwards;
 }
 
-/* ===== Encabezado ===== */
+/* ===== Encabezado principal ===== */
 h1 {
   text-align: center;
-  padding: 1.5rem;
-  font-size: 1.4rem;
-  color: #2c1b0f;
-  background-color: #faeee0;
-  border-bottom: 3px solid #b27f5d;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: #5e3023;
+  background-color: #fdfaf6;
+  margin-bottom: 0;
+  border-bottom: 3px solid #c97c5d;
 }
 
 /* ===== Menú principal ===== */
 nav {
-  background: linear-gradient(to right, #f3e5d0, #fcebd5);
-  padding: 12px 0;
+  background: linear-gradient(to right, #d6ad60, #c97c5d);
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -32,10 +35,10 @@ nav {
 
 .menu {
   list-style: none;
-  display: flex;
-  gap: 1.2rem;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
 }
 
 .menu > li {
@@ -43,18 +46,19 @@ nav {
 }
 
 .menu > li > a {
-  font-size: 0.8rem;
   text-decoration: none;
-  padding: 0.6rem 1rem;
-  background-color: #e8c5a5;
-  color: #2e1c0f;
-  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  color: #fffef9;
+  background-color: #8c5e38;
+  border-radius: 8px;
   transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-block;
 }
 
 .menu > li > a:hover {
-  background-color: #d9ae85;
+  background-color: #b97a57;
   transform: scale(1.05);
+  box-shadow: 0 0 10px #f1d3b3;
 }
 
 /* ===== Submenú ===== */
@@ -63,11 +67,11 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #fffaf3;
+  background-color: #f9f4ef;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   padding: 0.5rem 0;
-  z-index: 99;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 999;
   min-width: 160px;
 }
 
@@ -77,35 +81,44 @@ nav {
 
 .submenu li a {
   text-decoration: none;
-  color: #4e3629;
-  font-size: 0.7rem;
+  color: #3a2e2e;
   padding: 0.5rem 1rem;
   display: block;
   white-space: nowrap;
+  transition: background 0.3s ease;
 }
 
 .submenu li a:hover {
-  background-color: #f0dcc2;
+  background-color: #e4d6c0;
 }
 
+/* Mostrar submenú */
 .menu li:hover .submenu {
   display: block;
 }
 
-/* ===== Titulares secundarios ===== */
-h2 {
-  font-size: 1rem;
-  color: #3e2d20;
-  text-align: center;
-  margin: 2rem 0 1rem;
+/* ===== Separador ===== */
+hr {
+  border: none;
+  height: 2px;
+  background-color: #a65f46;
+  margin: 2rem 0;
 }
 
-/* ===== Texto y párrafos ===== */
+/* ===== Titulares secundarios ===== */
+h2 {
+  max-width: 90%;
+  word-wrap: break-word;
+  margin: auto;
+  color: #5a3e36;
+  font-size: 1rem;
+}
+
+/* ===== Párrafos ===== */
 p {
   padding: 0 1rem 1rem;
   line-height: 1.6;
-  font-size: 0.65rem;
-  text-align: justify;
+  font-size: 0.7rem;
 }
 
 /* ===== Imágenes ===== */
@@ -113,33 +126,18 @@ img {
   display: block;
   margin: 0 auto 1rem;
   max-width: 90%;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 img:hover {
-  transform: scale(1.02);
-}
-
-/* ===== Separadores ===== */
-hr {
-  border: none;
-  height: 2px;
-  background-color: #d4b48c;
-  margin: 2rem 0;
-}
-
-/* ===== Footer ===== */
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.6rem;
-  color: #6b4e3e;
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(166, 95, 70, 0.4);
 }
 
 /* ===== Animación de entrada ===== */
-@keyframes fadeIn {
+@keyframes aparecer {
   to {
     opacity: 1;
   }
