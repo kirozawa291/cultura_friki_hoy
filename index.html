@@ -2,52 +2,126 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultura Friki Hoy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilo_noticiero_friki.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #0f0f0f;
+      color: #fff;
+      font-family: 'Rubik', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #444;
+    }
+    header h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.2rem;
+      color: #ff4c4c;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      color: #d0f0c0;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      background-color: #333;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background-color: #555;
+    }
+    main {
+      padding: 2rem;
+    }
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .noticia {
+      background: #1b1b1b;
+      border: 1px solid #333;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .noticia:hover {
+      transform: scale(1.02);
+    }
+    .noticia img {
+      width: 100%;
+      height: auto;
+    }
+    .noticia h2 {
+      font-size: 1rem;
+      color: #ffe400;
+      padding: 0.8rem 1rem 0 1rem;
+      margin: 0;
+    }
+    .noticia p {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      color: #ccc;
+    }
+    .noticia a {
+      display: block;
+      text-align: right;
+      padding: 0.5rem 1rem;
+      color: #66ccff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.6rem;
+      color: #666;
+      padding: 2rem 1rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>📰 Cultura Friki Hoy</h1>
+  <header>
+    <h1>Cultura Friki Hoy</h1>
+    <nav>
+      <ul>
+        <li><a href="anime.html">Anime</a></li>
+        <li><a href="cine.html">Cine</a></li>
+        <li><a href="musica.html">Música</a></li>
+        <li><a href="recomendaciones.html">Recomendaciones</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <nav>
-    <ul class="menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li>
-        <a href="anime.html">Anime ⬇️</a>
-        <ul class="submenu">
-          <li><a href="anime.html#noticias">Noticias Anime</a></li>
-          <li><a href="recomendaciones.html#anime">Recomendaciones</a></li>
-          <li><a href="anime.html#estrenos">Estrenos</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="cine.html">Cine ⬇️</a>
-        <ul class="submenu">
-          <li><a href="cine.html#peliculas">Películas</a></li>
-          <li><a href="cine.html#curiosidades">Curiosidades</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="musica.html">Música ⬇️</a>
-        <ul class="submenu">
-          <li><a href="musica.html#jpop">J-Pop</a></li>
-          <li><a href="musica.html#kpop">K-Pop</a></li>
-          <li><a href="musica.html#soundtracks">Soundtracks</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="recomendaciones.html">Recomendaciones</a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Noticias de ejemplo -->
-  <hr><h2>Fūta Kimura's Unmei no Makimodo Shi - All Great Achievements Require Time Manga Gets TV Anime</h2><img src="https://www.animenewsnetwork.com/thumbnails/crop1200x630gHE/youtube/V1RzLtUVG2M.jpg" alt="Imagen del anime"><p>¡Ey, otakus! ¡Prepárense para el hype porque el manga Fūta Kimura's Unmei no Makimodo Shi - All Great Achievements Require Time va a tener su versión anime en la tele! ¿Emocionados ya? ¡Prepárense para vivir la épica historia de Fūta y sus aventuras en busca de su destino! ¡No se lo pierdan, chicos!</p>
-  <hr><h2>Manga Café Comedy Manga Ichijōma Mankitsu Gurashi! Gets TV Anime</h2><img src="https://cdn.animenewsnetwork.com/thumbnails/max600x600/cms/news.8/226453/14827-8781-8b818e65e99b3b90a968560a93de1ba7-1000x1438.jpg.webp" alt="Imagen del anime"><p>¡Hey, otakus! ¡Noticias frescas del mundo del anime! El manga cómico "Ichijōma Mankitsu Gurashi!" ¡se viene con anime! Prepara tus palomitas y ponte en modo binge-watch, ¡que esta comedia promete ser la sensación de la temporada! ¡No te lo pierdas!</p>
-  <hr><h2>Honō no Tōkyūjo: Dodge Danko Dodgeball Manga Gets TV Anime in 2026</h2><img src="https://cdn.animenewsnetwork.com/thumbnails/max600x600/cms/news.8/226552/dodge-danko.jfif.jpeg" alt="Imagen del anime"><p>¡Prepárate para la acción! "Honō no Tōkyūjo: Dodge Danko Dodgeball" se convierte en anime en 2026. Una historia llena de energía, sudor y lanzamientos extremos. ¿Te lo vas a perder?</p>
+  <main>
+    <div class="noticias-grid">
+      <!-- Aquí van las noticias que generas con los otros scripts -->
+      <div class="noticia">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="Ejemplo">
+        <h2>Ejemplo de Título</h2>
+        <p>Este es un ejemplo de resumen. Aquí se mostrará la sinopsis breve generada con estilo friki e interesante.</p>
+        <a href="#">Leer más</a>
+      </div>
+      <!-- Repetir para más noticias -->
+    </div>
+  </main>
 
   <footer>
-    <p>Creado por el invocador Kirozawa 🧙‍♂️</p>
+    <p>Hecho con bits y magia por Kirozawa 🧙‍♂️</p>
   </footer>
 </body>
 </html>
