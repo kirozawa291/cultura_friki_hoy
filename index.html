@@ -5,37 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultura Friki Hoy</title>
   <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --card-bg: #1a1a1a;
+      --title-color: #ff4d6d;
+      --text-color: #dddddd;
+      --hover-color: #ffcc00;
+    }
+
     body {
-      background-color: #0f0f0f;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
     }
 
     header {
-      background-color: #1a1a1a;
+      background-color: #111;
       padding: 20px;
       text-align: center;
     }
 
     header h1 {
       margin: 0;
-      color: #ff416c;
+      font-size: 2rem;
+      color: var(--title-color);
+    }
+
+    nav {
+      background-color: #151515;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--hover-color);
     }
 
     .news-container {
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      gap: 20px;
       max-width: 1000px;
       margin: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .news-card {
       display: flex;
-      background-color: #1e1e1e;
+      background-color: var(--card-bg);
       border-radius: 10px;
       overflow: hidden;
       transition: transform 0.2s;
@@ -45,6 +74,7 @@
 
     .news-card:hover {
       transform: scale(1.01);
+      box-shadow: 0 0 10px var(--hover-color);
     }
 
     .news-card img {
@@ -63,51 +93,71 @@
     .news-content h2 {
       margin: 0 0 10px 0;
       font-size: 1.2rem;
-      color: #ffcc00;
+      color: var(--title-color);
     }
 
     .news-content p {
       margin: 0;
       font-size: 0.95rem;
-      color: #cccccc;
     }
 
     footer {
+      background-color: #111;
       text-align: center;
       padding: 20px;
-      background-color: #1a1a1a;
+      font-size: 0.9rem;
       color: #777;
-      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .news-card {
+        flex-direction: column;
+      }
+
+      .news-card img {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Cultura Friki Hoy</h1>
   </header>
 
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="anime.html">Anime</a>
+    <a href="cine.html">Cine</a>
+    <a href="manga.html">Manga</a>
+    <a href="musica.html">Música</a>
+  </nav>
+
   <div class="news-container">
     <a class="news-card" href="noticia1.html">
-      <img src="img/noticia1.jpg" alt="Noticia 1">
+      <img src="img/noticia1.jpg" alt="Imagen de Noticia 1">
       <div class="news-content">
-        <h2>Título de la Noticia 1</h2>
-        <p>Breve resumen de la noticia con datos relevantes del anime, manga o evento.</p>
+        <h2>¡Nuevo tráiler de la película de Jujutsu Kaisen!</h2>
+        <p>MAPPA revela más detalles de la historia de Yuta Okkotsu en su próxima entrega cinematográfica.</p>
       </div>
     </a>
 
     <a class="news-card" href="noticia2.html">
-      <img src="img/noticia2.jpg" alt="Noticia 2">
+      <img src="img/noticia2.jpg" alt="Imagen de Noticia 2">
       <div class="news-content">
-        <h2>Título de la Noticia 2</h2>
-        <p>Descripción corta que invite al usuario a hacer clic y leer más detalles.</p>
+        <h2>Kenshi Yonezu lanza su nuevo sencillo para “My Hero Academia”</h2>
+        <p>La canción ya está disponible en Spotify y es parte del nuevo arco del anime.</p>
       </div>
     </a>
 
-    <!-- Puedes duplicar esta estructura para agregar más noticias -->
+    <!-- Agrega más noticias duplicando esta estructura -->
   </div>
 
   <footer>
-    &copy; 2025 Cultura Friki Hoy. Todos los derechos reservados.
+    &copy; 2025 Cultura Friki Hoy. Desarrollado con 💻 y pasión otaku.
   </footer>
+
 </body>
 </html>
