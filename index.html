@@ -4,124 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultura Friki Hoy</title>
-  <link rel="stylesheet" href="estilo_noticiero_friki.css">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #0f0f0f;
-      color: #fff;
-      font-family: 'Rubik', sans-serif;
+      background-color: #0f0f0f;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
     }
+
     header {
       background-color: #1a1a1a;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #444;
+      padding: 20px;
+      text-align: center;
     }
+
     header h1 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1.2rem;
-      color: #ff4c4c;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
       margin: 0;
-      padding: 0;
+      color: #ff416c;
     }
-    nav a {
-      color: #d0f0c0;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      background-color: #333;
-      border-radius: 5px;
+
+    .news-container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
     }
-    nav a:hover {
-      background-color: #555;
-    }
-    main {
-      padding: 2rem;
-    }
-    .noticias-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .noticia {
-      background: #1b1b1b;
-      border: 1px solid #333;
+
+    .news-card {
+      display: flex;
+      background-color: #1e1e1e;
       border-radius: 10px;
       overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-    .noticia:hover {
-      transform: scale(1.02);
-    }
-    .noticia img {
-      width: 100%;
-      height: auto;
-    }
-    .noticia h2 {
-      font-size: 1rem;
-      color: #ffe400;
-      padding: 0.8rem 1rem 0 1rem;
-      margin: 0;
-    }
-    .noticia p {
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      color: #ccc;
-    }
-    .noticia a {
-      display: block;
-      text-align: right;
-      padding: 0.5rem 1rem;
-      color: #66ccff;
-      font-weight: bold;
+      transition: transform 0.2s;
       text-decoration: none;
+      color: inherit;
     }
+
+    .news-card:hover {
+      transform: scale(1.01);
+    }
+
+    .news-card img {
+      width: 150px;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .news-content h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.2rem;
+      color: #ffcc00;
+    }
+
+    .news-content p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #cccccc;
+    }
+
     footer {
       text-align: center;
-      font-family: 'Press Start 2P', cursive;
-      font-size: 0.6rem;
-      color: #666;
-      padding: 2rem 1rem;
+      padding: 20px;
+      background-color: #1a1a1a;
+      color: #777;
+      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Cultura Friki Hoy</h1>
-    <nav>
-      <ul>
-        <li><a href="anime.html">Anime</a></li>
-        <li><a href="cine.html">Cine</a></li>
-        <li><a href="musica.html">Música</a></li>
-        <li><a href="recomendaciones.html">Recomendaciones</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <main>
-    <div class="noticias-grid">
-      <!-- Aquí van las noticias que generas con los otros scripts -->
-      <div class="noticia">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="Ejemplo">
-        <h2>Ejemplo de Título</h2>
-        <p>Este es un ejemplo de resumen. Aquí se mostrará la sinopsis breve generada con estilo friki e interesante.</p>
-        <a href="#">Leer más</a>
+  <div class="news-container">
+    <a class="news-card" href="noticia1.html">
+      <img src="img/noticia1.jpg" alt="Noticia 1">
+      <div class="news-content">
+        <h2>Título de la Noticia 1</h2>
+        <p>Breve resumen de la noticia con datos relevantes del anime, manga o evento.</p>
       </div>
-      <!-- Repetir para más noticias -->
-    </div>
-  </main>
+    </a>
+
+    <a class="news-card" href="noticia2.html">
+      <img src="img/noticia2.jpg" alt="Noticia 2">
+      <div class="news-content">
+        <h2>Título de la Noticia 2</h2>
+        <p>Descripción corta que invite al usuario a hacer clic y leer más detalles.</p>
+      </div>
+    </a>
+
+    <!-- Puedes duplicar esta estructura para agregar más noticias -->
+  </div>
 
   <footer>
-    <p>Hecho con bits y magia por Kirozawa 🧙‍♂️</p>
+    &copy; 2025 Cultura Friki Hoy. Todos los derechos reservados.
   </footer>
 </body>
 </html>
