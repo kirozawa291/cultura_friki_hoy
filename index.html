@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cultura Friki Hoy</title>
   <style>
     :root {
-      --bg-color: #0d0d0d;
-      --card-bg: #1a1a1a;
-      --title-color: #ff4d6d;
-      --text-color: #dddddd;
-      --hover-color: #ffcc00;
+      --bg-color: #f4f4f4;
+      --card-bg: #ffffff;
+      --title-color: #2b6cb0;
+      --text-color: #333333;
+      --border-color: #dddddd;
     }
 
     body {
@@ -22,9 +22,10 @@
     }
 
     header {
-      background-color: #111;
+      background-color: #ffffff;
       padding: 20px;
       text-align: center;
+      border-bottom: 1px solid var(--border-color);
     }
 
     header h1 {
@@ -34,7 +35,7 @@
     }
 
     nav {
-      background-color: #151515;
+      background-color: #eaeaea;
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -46,11 +47,10 @@
       color: var(--text-color);
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.2s;
     }
 
     nav a:hover {
-      color: var(--hover-color);
+      color: var(--title-color);
     }
 
     .news-container {
@@ -62,19 +62,35 @@
       gap: 20px;
     }
 
+    .news-day {
+      margin-top: 40px;
+    }
+
+    .news-day h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: var(--title-color);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 10px 0 30px;
+    }
+
     .news-card {
       display: flex;
       background-color: var(--card-bg);
       border-radius: 10px;
       overflow: hidden;
-      transition: transform 0.2s;
+      box-shadow: 0 0 5px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
       text-decoration: none;
       color: inherit;
     }
 
     .news-card:hover {
-      transform: scale(1.01);
-      box-shadow: 0 0 10px var(--hover-color);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .news-card img {
@@ -91,22 +107,25 @@
     }
 
     .news-content h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.2rem;
+      margin: 0 0 8px 0;
+      font-size: 1.1rem;
       color: var(--title-color);
     }
 
     .news-content p {
       margin: 0;
       font-size: 0.95rem;
+      color: var(--text-color);
     }
 
     footer {
-      background-color: #111;
       text-align: center;
       padding: 20px;
+      background-color: #ffffff;
       font-size: 0.9rem;
       color: #777;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
     }
 
     @media (max-width: 600px) {
@@ -136,27 +155,54 @@
   </nav>
 
   <div class="news-container">
-    <a class="news-card" href="noticia1.html">
-      <img src="img/noticia1.jpg" alt="Imagen de Noticia 1">
-      <div class="news-content">
-        <h2>¡Nuevo tráiler de la película de Jujutsu Kaisen!</h2>
-        <p>MAPPA revela más detalles de la historia de Yuta Okkotsu en su próxima entrega cinematográfica.</p>
-      </div>
-    </a>
 
-    <a class="news-card" href="noticia2.html">
-      <img src="img/noticia2.jpg" alt="Imagen de Noticia 2">
-      <div class="news-content">
-        <h2>Kenshi Yonezu lanza su nuevo sencillo para “My Hero Academia”</h2>
-        <p>La canción ya está disponible en Spotify y es parte del nuevo arco del anime.</p>
-      </div>
-    </a>
+    <div class="news-day">
+      <h3>📅 Noticias del 31 de julio</h3>
+      <hr>
+      
+      <a class="news-card" href="noticia1.html">
+        <img src="img/noticia1.jpg" alt="Noticia 1">
+        <div class="news-content">
+          <h2>Nueva temporada de Demon Slayer confirmada</h2>
+          <p>Ufotable anuncia el próximo arco con una animación que promete superar todo lo anterior.</p>
+        </div>
+      </a>
 
-    <!-- Agrega más noticias duplicando esta estructura -->
+      <a class="news-card" href="noticia2.html">
+        <img src="img/noticia2.jpg" alt="Noticia 2">
+        <div class="news-content">
+          <h2>My Hero Academia: capítulo final revelado</h2>
+          <p>El manga llega a su clímax con un cierre épico que hizo llorar a miles de fans.</p>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="news-day">
+      <h3>📅 Noticias del 30 de julio</h3>
+      <hr>
+
+      <a class="news-card" href="noticia3.html">
+        <img src="img/noticia3.jpg" alt="Noticia 3">
+        <div class="news-content">
+          <h2>¡Spy x Family tendrá película live-action!</h2>
+          <p>El elenco japonés ya está confirmado y la producción comienza en agosto.</p>
+        </div>
+      </a>
+
+      <a class="news-card" href="noticia4.html">
+        <img src="img/noticia4.jpg" alt="Noticia 4">
+        <div class="news-content">
+          <h2>LiSA vuelve a la música con nuevo álbum</h2>
+          <p>La cantante de “Gurenge” anuncia gira mundial y su regreso triunfal a los escenarios.</p>
+        </div>
+      </a>
+    </div>
+
   </div>
 
   <footer>
-    &copy; 2025 Cultura Friki Hoy. Desarrollado con 💻 y pasión otaku.
+    &copy; 2025 Cultura Friki Hoy. Noticias frescas cada día para tu alma otaku.
   </footer>
 
 </body>
