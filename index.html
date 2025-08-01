@@ -2,208 +2,122 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cultura Friki Hoy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {
-      --bg-color: #f4f4f4;
-      --card-bg: #ffffff;
-      --title-color: #2b6cb0;
-      --text-color: #333333;
-      --border-color: #dddddd;
-    }
-
     body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      color: #333;
     }
 
     header {
-      background-color: #ffffff;
+      background: white;
       padding: 20px;
       text-align: center;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid #ddd;
     }
 
     header h1 {
+      color: #2b6cb0;
       margin: 0;
-      font-size: 2rem;
-      color: var(--title-color);
     }
 
-    nav {
-      background-color: #eaeaea;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: var(--title-color);
-    }
-
-    .news-container {
+    section {
       max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      border-left: 5px solid #2b6cb0;
+      padding-left: 10px;
+      color: #2b6cb0;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
-    .news-day {
-      margin-top: 40px;
-    }
-
-    .news-day h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: var(--title-color);
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border-color);
-      margin: 10px 0 30px;
-    }
-
-    .news-card {
-      display: flex;
-      background-color: var(--card-bg);
+    .card {
+      background: white;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 5px rgba(0,0,0,0.05);
-      transition: box-shadow 0.2s;
       text-decoration: none;
       color: inherit;
+      display: flex;
+      flex-direction: column;
     }
 
-    .news-card:hover {
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .news-card img {
-      width: 150px;
-      height: 100%;
+    .card img {
+      width: 100%;
+      height: 150px;
       object-fit: cover;
     }
 
-    .news-content {
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .news-content h2 {
-      margin: 0 0 8px 0;
+    .card h3 {
+      margin: 10px;
       font-size: 1.1rem;
-      color: var(--title-color);
     }
 
-    .news-content p {
-      margin: 0;
+    .card p {
+      margin: 0 10px 10px;
       font-size: 0.95rem;
-      color: var(--text-color);
+      color: #555;
+    }
+
+    .ver-mas {
+      display: block;
+      text-align: right;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #2b6cb0;
+      text-decoration: none;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
       font-size: 0.9rem;
-      color: #777;
+      padding: 20px;
+      background: white;
       margin-top: 40px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    @media (max-width: 600px) {
-      .news-card {
-        flex-direction: column;
-      }
-
-      .news-card img {
-        width: 100%;
-        height: auto;
-      }
+      border-top: 1px solid #ddd;
+      color: #777;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Cultura Friki Hoy</h1>
   </header>
 
-  <nav>
-    <a href="index.html">Inicio</a>
-    <a href="anime.html">Anime</a>
-    <a href="cine.html">Cine</a>
-    <a href="manga.html">Manga</a>
-    <a href="musica.html">Música</a>
-  </nav>
+  <section id="anime-section">
+    <h2>Anime</h2>
+    <div class="news-grid" id="anime-news"></div>
+    <a class="ver-mas" href="anime/anime.html">Ver más noticias de anime →</a>
+  </section>
 
-  <div class="news-container">
+  <section id="cine-section">
+    <h2>Cine</h2>
+    <div class="news-grid" id="cine-news"></div>
+    <a class="ver-mas" href="cine/cine.html">Ver más noticias de cine →</a>
+  </section>
 
-    <div class="news-day">
-      <h3>📅 Noticias del 31 de julio</h3>
-      <hr>
-      
-      <a class="news-card" href="noticia1.html">
-        <img src="img/noticia1.jpg" alt="Noticia 1">
-        <div class="news-content">
-          <h2>Nueva temporada de Demon Slayer confirmada</h2>
-          <p>Ufotable anuncia el próximo arco con una animación que promete superar todo lo anterior.</p>
-        </div>
-      </a>
-
-      <a class="news-card" href="noticia2.html">
-        <img src="img/noticia2.jpg" alt="Noticia 2">
-        <div class="news-content">
-          <h2>My Hero Academia: capítulo final revelado</h2>
-          <p>El manga llega a su clímax con un cierre épico que hizo llorar a miles de fans.</p>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="news-day">
-      <h3>📅 Noticias del 30 de julio</h3>
-      <hr>
-
-      <a class="news-card" href="noticia3.html">
-        <img src="img/noticia3.jpg" alt="Noticia 3">
-        <div class="news-content">
-          <h2>¡Spy x Family tendrá película live-action!</h2>
-          <p>El elenco japonés ya está confirmado y la producción comienza en agosto.</p>
-        </div>
-      </a>
-
-      <a class="news-card" href="noticia4.html">
-        <img src="img/noticia4.jpg" alt="Noticia 4">
-        <div class="news-content">
-          <h2>LiSA vuelve a la música con nuevo álbum</h2>
-          <p>La cantante de “Gurenge” anuncia gira mundial y su regreso triunfal a los escenarios.</p>
-        </div>
-      </a>
-    </div>
-
-  </div>
+  <section id="musica-section">
+    <h2>Música</h2>
+    <div class="news-grid" id="musica-news"></div>
+    <a class="ver-mas" href="musica/musica.html">Ver más noticias de música →</a>
+  </section>
 
   <footer>
-    &copy; 2025 Cultura Friki Hoy. Noticias frescas cada día para tu alma otaku.
+    &copy; 2025 Cultura Friki Hoy. Desarrollado por Luis Quiroz con poder friki.
   </footer>
 
+  <script src="js/cargarNoticias.js"></script>
 </body>
 </html>
