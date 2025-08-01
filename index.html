@@ -2,122 +2,198 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Cultura Friki Hoy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cultura Friki Hoy</title>
   <style>
+    :root {
+      --bg-color: #f4f4f4;
+      --card-bg: #ffffff;
+      --title-color: #2b6cb0;
+      --text-color: #333333;
+      --border-color: #dddddd;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
       margin: 0;
       padding: 0;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
     }
 
     header {
-      background: white;
+      background-color: #ffffff;
       padding: 20px;
       text-align: center;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--border-color);
     }
 
     header h1 {
-      color: #2b6cb0;
       margin: 0;
+      font-size: 2rem;
+      color: var(--title-color);
     }
 
-    section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      border-left: 5px solid #2b6cb0;
-      padding-left: 10px;
-      color: #2b6cb0;
-    }
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    nav {
+      background-color: #eaeaea;
+      display: flex;
+      justify-content: center;
       gap: 20px;
+      padding: 10px 0;
+      flex-wrap: wrap;
     }
 
-    .card {
-      background: white;
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--title-color);
+    }
+
+    .news-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .news-section {
+      margin-top: 20px;
+    }
+
+    .news-section h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: var(--title-color);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-color);
+      margin: 10px 0 30px;
+    }
+
+    .news-card {
+      display: flex;
+      background-color: var(--card-bg);
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 5px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s;
       text-decoration: none;
       color: inherit;
-      display: flex;
-      flex-direction: column;
+      margin-bottom: 20px;
     }
 
-    .card img {
-      width: 100%;
-      height: 150px;
+    .news-card:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .news-card img {
+      width: 150px;
+      height: 100%;
       object-fit: cover;
     }
 
-    .card h3 {
-      margin: 10px;
-      font-size: 1.1rem;
+    .news-content {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .card p {
-      margin: 0 10px 10px;
+    .news-content h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.1rem;
+      color: var(--title-color);
+    }
+
+    .news-content p {
+      margin: 0;
       font-size: 0.95rem;
-      color: #555;
+      color: var(--text-color);
     }
 
     .ver-mas {
-      display: block;
       text-align: right;
-      margin-top: 10px;
+      margin-top: -10px;
+      margin-bottom: 30px;
       font-weight: bold;
-      color: #2b6cb0;
+      color: var(--title-color);
       text-decoration: none;
     }
 
     footer {
       text-align: center;
-      font-size: 0.9rem;
       padding: 20px;
-      background: white;
-      margin-top: 40px;
-      border-top: 1px solid #ddd;
+      background-color: #ffffff;
+      font-size: 0.9rem;
       color: #777;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 600px) {
+      .news-card {
+        flex-direction: column;
+      }
+
+      .news-card img {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Cultura Friki Hoy</h1>
   </header>
 
-  <section id="anime-section">
-    <h2>Anime</h2>
-    <div class="news-grid" id="anime-news"></div>
-    <a class="ver-mas" href="anime/anime.html">Ver más noticias de anime →</a>
-  </section>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="anime/anime.html">Anime</a>
+    <a href="cine/cine.html">Cine</a>
+    <a href="manga.html">Manga</a>
+    <a href="musica/musica.html">Música</a>
+  </nav>
 
-  <section id="cine-section">
-    <h2>Cine</h2>
-    <div class="news-grid" id="cine-news"></div>
-    <a class="ver-mas" href="cine/cine.html">Ver más noticias de cine →</a>
-  </section>
+  <div class="news-container">
 
-  <section id="musica-section">
-    <h2>Música</h2>
-    <div class="news-grid" id="musica-news"></div>
-    <a class="ver-mas" href="musica/musica.html">Ver más noticias de música →</a>
-  </section>
+    <div class="news-section">
+      <h3>🌀 Noticias destacadas de Anime</h3>
+      <hr>
+      <div id="anime-news"></div>
+      <a class="ver-mas" href="anime/anime.html">→ Ver más noticias de Anime</a>
+    </div>
+
+    <div class="news-section">
+      <h3>🎬 Noticias destacadas de Cine</h3>
+      <hr>
+      <div id="cine-news"></div>
+      <a class="ver-mas" href="cine/cine.html">→ Ver más noticias de Cine</a>
+    </div>
+
+    <div class="news-section">
+      <h3>🎵 Noticias destacadas de Música</h3>
+      <hr>
+      <div id="musica-news"></div>
+      <a class="ver-mas" href="musica/musica.html">→ Ver más noticias de Música</a>
+    </div>
+
+  </div>
 
   <footer>
-    &copy; 2025 Cultura Friki Hoy. Desarrollado por Luis Quiroz con poder friki.
+    &copy; 2025 Cultura Friki Hoy. Noticias frescas cada día para tu alma otaku.
   </footer>
 
   <script src="js/cargarNoticias.js"></script>
+
 </body>
 </html>
