@@ -6,147 +6,163 @@
   <title>Cultura Friki Hoy</title>
   <style>
     :root {
-      --bg-color: #f4f4f4;
-      --card-bg: #ffffff;
-      --title-color: #2b6cb0;
-      --text-color: #333333;
-      --border-color: #dddddd;
+      --bg-main: #f8fafc;
+      --bg-card: #fff;
+      --border: #e2e8f0;
+      --title: #364fc7;
+      --subtitle: #6c757d;
+      --hover: #ffae34;
+      --text: #202124;
+      --menu: #f1f3f7;
     }
-
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      background: var(--bg-main);
+      color: var(--text);
     }
-
     header {
-      background-color: #ffffff;
-      padding: 20px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0 10px;
       text-align: center;
-      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 4px rgba(70,85,105,.04);
     }
-
     header h1 {
       margin: 0;
-      font-size: 2rem;
-      color: var(--title-color);
+      color: var(--title);
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      font-weight: 900;
     }
-
     nav {
-      background-color: #eaeaea;
+      background: var(--menu);
+      padding: 12px 0;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-      flex-wrap: wrap;
+      gap: 30px;
+      border-bottom: 1px solid var(--border);
     }
-
     nav a {
-      color: var(--text-color);
+      color: var(--title);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 1.07rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background .15s;
     }
-
     nav a:hover {
-      color: var(--title-color);
+      background: var(--hover);
+      color: #fff;
     }
 
-    .news-container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 16px 0;
     }
 
-    .news-section {
-      margin-top: 20px;
+    .news-day {
+      margin-bottom: 50px;
     }
-
-    .news-section h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-      color: var(--title-color);
+    .date-title {
+      font-size: 1.15rem;
+      color: var(--subtitle);
+      margin: 0 0 14px 4px;
+      letter-spacing: 0.5px;
+      font-weight: 700;
     }
-
     hr {
       border: none;
-      border-top: 1px solid var(--border-color);
-      margin: 10px 0 30px;
+      border-top: 1.5px solid var(--border);
+      margin: 8px 0 30px 0;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     .news-card {
       display: flex;
-      background-color: var(--card-bg);
-      border-radius: 10px;
+      align-items: stretch;
+      background: var(--bg-card);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0 5px rgba(0,0,0,0.05);
-      transition: box-shadow 0.2s;
+      box-shadow: 0 1px 4px rgba(110,120,140,.05);
       text-decoration: none;
       color: inherit;
-      margin-bottom: 20px;
+      transition: box-shadow .17s, transform .12s;
+      border: 1.3px solid var(--border);
+      min-height: 120px;
     }
-
     .news-card:hover {
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 14px #ffae3425, 0 1.5px 6px rgba(54,79,199,0.08);
+      transform: translateY(-2px) scale(1.015);
+      border-color: var(--hover);
+      background: #fffbe8;
     }
-
-    .news-card img {
-      width: 150px;
+    .news-img {
+      flex: 0 0 140px;
+      width: 140px;
       height: 100%;
       object-fit: cover;
+      background: #ddd;
     }
-
     .news-content {
-      padding: 15px;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 18px 22px;
     }
-
     .news-content h2 {
-      margin: 0 0 8px 0;
-      font-size: 1.1rem;
-      color: var(--title-color);
+      margin: 0 0 7px 0;
+      font-size: 1.11rem;
+      color: var(--title);
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
-
     .news-content p {
       margin: 0;
-      font-size: 0.95rem;
-      color: var(--text-color);
+      color: var(--text);
+      font-size: 0.97rem;
+      line-height: 1.35;
+      opacity: .91;
     }
 
-    .ver-mas {
-      text-align: right;
-      margin-top: -10px;
-      margin-bottom: 30px;
-      font-weight: bold;
-      color: var(--title-color);
-      text-decoration: none;
+    .news-content .tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 8px;
+      background: var(--hover);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      opacity: .89;
+    }
+
+    @media (max-width: 650px) {
+      .container { padding: 18px 2vw 0;}
+      .news-card { flex-direction: column; }
+      .news-img { width: 100%; height: 175px;}
+      .news-content { padding: 13px 12px;}
     }
 
     footer {
+      background: var(--bg-card);
+      color: var(--subtitle);
+      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
-      font-size: 0.9rem;
-      color: #777;
+      font-size: .98rem;
       margin-top: 40px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    @media (max-width: 600px) {
-      .news-card {
-        flex-direction: column;
-      }
-
-      .news-card img {
-        width: 100%;
-        height: auto;
-      }
+      padding: 22px 8px 16px;
+      letter-spacing: 0.15px;
     }
   </style>
 </head>
@@ -158,42 +174,74 @@
 
   <nav>
     <a href="index.html">Inicio</a>
-    <a href="anime/anime.html">Anime</a>
-    <a href="cine/cine.html">Cine</a>
+    <a href="anime.html">Anime</a>
+    <a href="cine.html">Cine</a>
     <a href="manga.html">Manga</a>
-    <a href="musica/musica.html">Música</a>
+    <a href="musica.html">Música</a>
   </nav>
 
-  <div class="news-container">
+  <div class="container">
 
-    <div class="news-section">
-      <h3>🌀 Noticias destacadas de Anime</h3>
+    <!-- NOTICIAS DE UN DÍA -->
+    <div class="news-day">
+      <div class="date-title">📅 Noticias del 31 de julio</div>
       <hr>
-      <div id="anime-news"></div>
-      <a class="ver-mas" href="anime/anime.html">→ Ver más noticias de Anime</a>
+      <div class="news-list">
+        <a class="news-card" href="anime.html#noticia1">
+          <img class="news-img" src="img/noticia1.jpg" alt="Noticia 1">
+          <div class="news-content">
+            <h2>Nueva temporada de Demon Slayer confirmada</h2>
+            <p>Ufotable anuncia el próximo arco con una animación que promete superar todo lo anterior.</p>
+            <span class="tag">Anime</span>
+          </div>
+        </a>
+        <a class="news-card" href="cine.html#noticia2">
+          <img class="news-img" src="img/noticia2.jpg" alt="Noticia 2">
+          <div class="news-content">
+            <h2>My Hero Academia: capítulo final revelado</h2>
+            <p>El manga llega a su clímax con un cierre épico que hizo llorar a miles de fans.</p>
+            <span class="tag">Cine</span>
+          </div>
+        </a>
+        <a class="news-card" href="musica.html#noticia3">
+          <img class="news-img" src="img/noticia3.jpg" alt="Noticia 3">
+          <div class="news-content">
+            <h2>LiSA vuelve a la música con nuevo álbum</h2>
+            <p>La cantante de “Gurenge” anuncia gira mundial y su regreso triunfal a los escenarios.</p>
+            <span class="tag">Música</span>
+          </div>
+        </a>
+      </div>
     </div>
 
-    <div class="news-section">
-      <h3>🎬 Noticias destacadas de Cine</h3>
+    <!-- MÁS DÍAS: SOLO DUPLICA EL BLOQUE -->
+    <div class="news-day">
+      <div class="date-title">📅 Noticias del 30 de julio</div>
       <hr>
-      <div id="cine-news"></div>
-      <a class="ver-mas" href="cine/cine.html">→ Ver más noticias de Cine</a>
-    </div>
-
-    <div class="news-section">
-      <h3>🎵 Noticias destacadas de Música</h3>
-      <hr>
-      <div id="musica-news"></div>
-      <a class="ver-mas" href="musica/musica.html">→ Ver más noticias de Música</a>
+      <div class="news-list">
+        <a class="news-card" href="anime.html#noticia4">
+          <img class="news-img" src="img/noticia4.jpg" alt="Noticia 4">
+          <div class="news-content">
+            <h2>¡Spy x Family tendrá película live-action!</h2>
+            <p>El elenco japonés ya está confirmado y la producción comienza en agosto.</p>
+            <span class="tag">Anime</span>
+          </div>
+        </a>
+        <a class="news-card" href="cine.html#noticia5">
+          <img class="news-img" src="img/noticia5.jpg" alt="Noticia 5">
+          <div class="news-content">
+            <h2>Evangelion regresa a cines en 4K</h2>
+            <p>Hideaki Anno sorprende al mundo con una remasterización nunca vista.</p>
+            <span class="tag">Cine</span>
+          </div>
+        </a>
+      </div>
     </div>
 
   </div>
 
   <footer>
-    &copy; 2025 Cultura Friki Hoy. Noticias frescas cada día para tu alma otaku.
+    &copy; 2025 Cultura Friki Hoy. Inspirado por el alma otaku, impulsado por IA.
   </footer>
-
-  <script src="js/cargarNoticias.js"></script>
-
 </body>
 </html>
