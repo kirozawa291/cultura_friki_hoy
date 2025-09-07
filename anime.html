@@ -1,48 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Anime | Cultura Friki Hoy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="estilo_friki.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- (Mismo CSS que en música/cine) -->
+  <style>
+    :root{--bg-main:#f8fafc;--bg-card:#fff;--border:#e2e8f0;--title:#364fc7;--subtitle:#6c757d;--hover:#ffae34;--text:#202124;--menu:#f1f3f7;}
+    *{box-sizing:border-box} body{margin:0;font-family:'Segoe UI','Arial',sans-serif;background:var(--bg-main);color:var(--text);}
+    header{background:var(--bg-card);border-bottom:1px solid var(--border);padding:20px 0 10px;text-align:center;box-shadow:0 2px 4px rgba(70,85,105,.04)}
+    header h1{margin:0;color:var(--title);font-size:2.2rem;letter-spacing:1px;font-weight:900}
+    nav{background:var(--menu);padding:12px 0;display:flex;justify-content:center;gap:30px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+    nav a{color:var(--title);text-decoration:none;font-weight:600;font-size:1.07rem;padding:4px 8px;border-radius:6px;transition:background .15s,color .15s}
+    nav a:hover{background:var(--hover);color:#fff}
+    .container{max-width:920px;margin:0 auto;padding:32px 16px 0;min-height:60vh}
+    .news-day{margin-bottom:50px}
+    .date-title{font-size:1.15rem;color:var(--subtitle);margin:0 0 14px 4px;letter-spacing:.5px;font-weight:700}
+    hr{border:none;border-top:1.5px solid var(--border);margin:8px 0 30px 0}
+    .news-list{display:flex;flex-direction:column;gap:24px}
+    .news-card{display:flex;align-items:stretch;background:var(--bg-card);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(110,120,140,.05);text-decoration:none;color:inherit;transition:box-shadow .17s, transform .12s, border-color .12s, background .12s;border:1.3px solid var(--border);min-height:120px}
+    .news-card:hover{box-shadow:0 2px 14px #ffae3425,0 1.5px 6px rgba(54,79,199,0.08);transform:translateY(-2px) scale(1.015);border-color:var(--hover);background:#fffbe8}
+    .news-img{flex:0 0 140px;width:140px;height:100%;object-fit:cover;background:#ddd}
+    .news-content{flex:1;display:flex;flex-direction:column;justify-content:center;padding:18px 22px;gap:6px}
+    .news-content h2{margin:0;font-size:1.11rem;color:var(--title);font-weight:700;letter-spacing:.5px;line-height:1.25}
+    .news-content p{margin:0;color:var(--text);font-size:.97rem;line-height:1.35;opacity:.95}
+    .tag{display:inline-block;margin-top:6px;padding:2px 8px;background:var(--hover);color:#fff;border-radius:6px;font-size:.8rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;opacity:.92;align-self:flex-start}
+    @media (max-width:650px){.container{padding:18px 2vw 0}.news-card{flex-direction:column}.news-img{width:100%;height:175px}.news-content{padding:13px 12px}}
+    footer{background:var(--bg-card);color:var(--subtitle);border-top:1px solid var(--border);text-align:center;font-size:.98rem;margin-top:40px;padding:22px 8px 16px;letter-spacing:.15px}
+    .status{max-width:920px;margin:24px auto 0;color:#6b7280;font-size:.95rem;text-align:center;padding:0 12px}
+  </style>
 </head>
 <body>
-  <h1>🧠 Sección Anime</h1>
-
+  <header><h1>Cultura Friki Hoy</h1></header>
   <nav>
-    <ul class="menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="anime.html">Anime</a></li>
-      <li><a href="cine.html">Cine</a></li>
-      <li><a href="musica.html">Música</a></li>
-      <li><a href="recomendaciones.html">Recomendaciones</a></li>
-    </ul>
+    <a href="index.html">Inicio</a>
+    <a href="anime.html">Anime</a>
+    <a href="cine.html">Cine</a>
+    <a href="manga.html">Manga</a>
+    <a href="musica.html">Música</a>
   </nav>
-<hr>
-<h2>Honō no Tōkyūjo: Dodge Danko Dodgeball Manga Gets TV Anime in 2026</h2>
-<img src="https://cdn.animenewsnetwork.com/thumbnails/max600x600/cms/news.8/226552/dodge-danko.jfif.jpeg" alt="Imagen del anime" style="max-width:90%;border-radius:12px;">
-<p>¡Prepárense para esquivar y lanzar! El manga de dodgeball Honō no Tōkyūjo: Dodge Danko tendrá su propio anime en TV en 2026. ¡La emoción de este deporte extremo llegará a la pantalla grande con todo su ardiente poder! ¡Que comiencen los juegos de esquivar!</p>
-<hr>
-<h2>Fūta Kimura's Unmei no Makimodo Shi - All Great Achievements Require Time Manga Gets TV Anime</h2>
-<img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3674341273728237364" alt="Imagen del anime" style="max-width:90%;border-radius:12px;">
-<p>¡El manga "Fūta Kimura's Unmei no Makimodo Shi - All Great Achievements Require Time" tendrá su propia adaptación a anime! ¡Prepárense para ver en la pantalla chica esta increíble historia llena de logros épico-temporales! ¡Es hora de celebrar, otakus! 🎉</p>
-<hr>
-<h2>Haikyu!! Fly High Smartphone Card Game Launches Outside Japan on July 31</h2>
-<img src="https://www.klab.com/en/press/assets/cms/01_LaunchDate.jpg" alt="Imagen del anime" style="max-width:90%;border-radius:12px;">
-<p>¡Notición! El juego de cartas Haikyu!! Fly High para smartphone se lanzará fuera de Japón el 31 de julio. ¡Los fans podrán disfrutar del mundo del voleibol en la palma de su mano! ¡Prepárense para vivir la emoción de Hinata y Kageyama en sus dispositivos móviles! ¡A jugar!</p>
-<hr>
-<h2>Suda51, Swery65's Hotel Barcelona Game Launches in September</h2>
-<img src="https://cdn.animenewsnetwork.com/thumbnails/max300x600/cms/news.7/211169/hotel-barcelona-key-art.jpg" alt="Imagen del anime" style="max-width:90%;border-radius:12px;">
-<p>¡Atención otakus! El juego Hotel Barcelona de Suda51 y Swery65 se lanzará en septiembre. Preparaos para sumergiros en esta emocionante aventura llena de misterio y locura en la ciudad de Barcelona. ¡Que comiencen las apuestas!</p>
-<hr>
-<h2>Attack on Titan Director Tetsuro Araki Attends Anime India Event in Mumbai (Updated)</h2>
-<img src="https://www.animenewsnetwork.com/thumbnails/crop1200x630gO3/cms/news.8/226417/bnk2nhi4sv8flgith84g.webp" alt="Imagen del anime" style="max-width:90%;border-radius:12px;">
-<p>¡El director de Attack on Titan, Tetsuro Araki, asistió al evento Anime India en Mumbai! ¡Se armó un revuelo épico con su presencia! ¡Los fans de anime en la India están en llamas! 🔥🇮🇳</p>
 
-  <footer>
-    <p>Creado por el invocador de bits Kirozawa 🧙‍♂️</p>
-  </footer>
+  <div class="status" id="status">Cargando noticias de anime…</div>
+  <div class="container" id="news-container"></div>
+
+  <footer>&copy; 2025 Cultura Friki Hoy</footer>
+
+  <script>
+    const CATEGORIA="anime", ETIQUETA="Anime", NUM_DIAS=30, BASE_PATH="noticias";
+    const $=(s)=>document.querySelector(s);
+    function fechaDesdeOffset(n=0){const d=new Date();d.setDate(d.getDate()-n);const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),da=String(d.getDate()).padStart(2,"0");return `${y}-${m}-${da}`;}
+    function fechaLargaES(iso){const [y,m,d]=iso.split("-").map(Number);return new Intl.DateTimeFormat("es-ES",{day:"numeric",month:"long",year:"numeric"}).format(new Date(y,m-1,d));}
+    async function fetchJSON(p){try{const r=await fetch(p,{cache:"no-store"});return r.ok? r.json(): null;}catch{return null}}
+    function el(t,c,h){const e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e;}
+    function renderDia(container,fecha,items){
+      if(!items?.length) return;
+      const day=el("div","news-day");
+      day.appendChild(el("div","date-title","📅 Noticias del "+fechaLargaES(fecha)));
+      day.appendChild(document.createElement("hr"));
+      const list=el("div","news-list");
+      items.forEach(n=>{
+        const a=el("a","news-card"); a.href=n.link||"#"; a.target="_blank";
+        const img=el("img","news-img"); img.src=n.imagen||""; img.alt=n.titulo||"Noticia";
+        const c=el("div","news-content");
+        c.appendChild(el("h2",null,n.titulo||"Sin título"));
+        c.appendChild(el("p",null,n.resumen||""));
+        c.appendChild(el("span","tag",ETIQUETA));
+        a.appendChild(img); a.appendChild(c); list.appendChild(a);
+      });
+      day.appendChild(list); container.appendChild(day);
+    }
+    (async function(){
+      const cont=$("#news-container"), status=$("#status"); let pintado=false;
+      for(let i=0;i<NUM_DIAS;i++){
+        const fecha=fechaDesdeOffset(i);
+        const data=await fetchJSON(`${BASE_PATH}/${fecha}-${CATEGORIA}.json`);
+        if(Array.isArray(data)&&data.length){ renderDia(cont,fecha,data); pintado=true; }
+      }
+      status.textContent = pintado ? "" : "No hay noticias recientes de anime.";
+    })();
+  </script>
 </body>
 </html>
