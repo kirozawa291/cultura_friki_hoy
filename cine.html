@@ -1,85 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Cine | Cultura Friki Hoy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="estilo_friki.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- (Mismo CSS que en música) -->
   <style>
-    img {
-      max-width: 70%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 12px;
-    }
-    h2 {
-      font-size: 1.6em;
-      margin-top: 30px;
-      color: #ff4c4c;
-    }
-    h3 {
-      font-size: 1.2em;
-      color: #ffe400;
-    }
-    p {
-      font-size: 1em;
-      line-height: 1.6em;
-      color: #fff;
-    }
+    :root{--bg-main:#f8fafc;--bg-card:#fff;--border:#e2e8f0;--title:#364fc7;--subtitle:#6c757d;--hover:#ffae34;--text:#202124;--menu:#f1f3f7;}
+    *{box-sizing:border-box} body{margin:0;font-family:'Segoe UI','Arial',sans-serif;background:var(--bg-main);color:var(--text);}
+    header{background:var(--bg-card);border-bottom:1px solid var(--border);padding:20px 0 10px;text-align:center;box-shadow:0 2px 4px rgba(70,85,105,.04)}
+    header h1{margin:0;color:var(--title);font-size:2.2rem;letter-spacing:1px;font-weight:900}
+    nav{background:var(--menu);padding:12px 0;display:flex;justify-content:center;gap:30px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+    nav a{color:var(--title);text-decoration:none;font-weight:600;font-size:1.07rem;padding:4px 8px;border-radius:6px;transition:background .15s,color .15s}
+    nav a:hover{background:var(--hover);color:#fff}
+    .container{max-width:920px;margin:0 auto;padding:32px 16px 0;min-height:60vh}
+    .news-day{margin-bottom:50px}
+    .date-title{font-size:1.15rem;color:var(--subtitle);margin:0 0 14px 4px;letter-spacing:.5px;font-weight:700}
+    hr{border:none;border-top:1.5px solid var(--border);margin:8px 0 30px 0}
+    .news-list{display:flex;flex-direction:column;gap:24px}
+    .news-card{display:flex;align-items:stretch;background:var(--bg-card);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(110,120,140,.05);text-decoration:none;color:inherit;transition:box-shadow .17s, transform .12s, border-color .12s, background .12s;border:1.3px solid var(--border);min-height:120px}
+    .news-card:hover{box-shadow:0 2px 14px #ffae3425,0 1.5px 6px rgba(54,79,199,0.08);transform:translateY(-2px) scale(1.015);border-color:var(--hover);background:#fffbe8}
+    .news-img{flex:0 0 140px;width:140px;height:100%;object-fit:cover;background:#ddd}
+    .news-content{flex:1;display:flex;flex-direction:column;justify-content:center;padding:18px 22px;gap:6px}
+    .news-content h2{margin:0;font-size:1.11rem;color:var(--title);font-weight:700;letter-spacing:.5px;line-height:1.25}
+    .news-content p{margin:0;color:var(--text);font-size:.97rem;line-height:1.35;opacity:.95}
+    .tag{display:inline-block;margin-top:6px;padding:2px 8px;background:var(--hover);color:#fff;border-radius:6px;font-size:.8rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;opacity:.92;align-self:flex-start}
+    @media (max-width:650px){.container{padding:18px 2vw 0}.news-card{flex-direction:column}.news-img{width:100%;height:175px}.news-content{padding:13px 12px}}
+    footer{background:var(--bg-card);color:var(--subtitle);border-top:1px solid var(--border);text-align:center;font-size:.98rem;margin-top:40px;padding:22px 8px 16px;letter-spacing:.15px}
+    .status{max-width:920px;margin:24px auto 0;color:#6b7280;font-size:.95rem;text-align:center;padding:0 12px}
   </style>
 </head>
 <body>
-  <h1>🎬 Noticias del Cine Friki</h1>
+  <header><h1>Cultura Friki Hoy</h1></header>
   <nav>
-    <ul class="menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="anime.html">Anime</a></li>
-      <li><a href="cine.html">Cine</a></li>
-      <li><a href="musica.html">Música</a></li>
-      <li><a href="recomendaciones.html">Recomendaciones</a></li>
-    </ul>
+    <a href="index.html">Inicio</a>
+    <a href="anime.html">Anime</a>
+    <a href="cine.html">Cine</a>
+    <a href="manga.html">Manga</a>
+    <a href="musica.html">Música</a>
   </nav>
-<hr>
-<h2>Studio Ghibli</h2>
-<h3>Skip to main content</h3>
-<img src="https://platform.polygon.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/19998455/jbareham_200520_1021_ghibli_week_0001b.jpg?quality=90&strip=all&crop=0,10.732984293194,100,78.534031413613" alt="Imagen de la noticia"><br>
-<p>El estudio de animación japonés Studio Ghibli ha anunciado una emocionante noticia para los amantes del cine japonés. A través de sus redes sociales, han revelado que próximamente lanzarán una nueva película que promete encantar a sus seguidores. Este estudio es reconocido por producciones aclamadas como "Mi Vecino Totoro" y "El Viaje de Chihiro", por lo que las expectativas están muy altas para su próxima obra. Los detalles sobre el argumento y el título de esta película aún no han sido revelados, pero sin duda será una experiencia cinematográfica única y emocionante para todos los fans de Studio Ghibli. ¡Mantente atento a las próximas noticias para más detalles sobre este esperado estreno!</p>
-<p><a href="https://www.ghibli.jp/info/#content" target="_blank">Leer más en la web oficial</a></p>
-<hr>
-<h2>CoMix Wave Films</h2>
-<h3>WORKS</h3>
-<img src="https://www.cwfilms.jp/en/products/assets_c/2023/08/f5ac839e5d2f47995f31b626312e0c42bf7bbfe4-thumb-autox1200-1368.jpg" alt="Imagen de la noticia"><br>
-<p>El estudio CoMix Wave Films anunció su nueva producción en el mundo del cine japonés, titulada 'WORKS'. Este proyecto promete impactar a los seguidores de la cinematografía de animación japonesa con su innovador enfoque y fascinante historia. Con un equipo creativo de primer nivel y una calidad visual impresionante, 'WORKS' promete ser una obra maestra del género que no dejará indiferente a nadie. Los fans del cine japonés están ansiosos por descubrir más detalles sobre esta emocionante propuesta que promete romper esquemas y cautivar a audiencias de todo el mundo.</p>
-<p><a href="https://www.cwfilms.jp/news/products/" target="_blank">Leer más en la web oficial</a></p>
-<hr>
-<h2>Studio Chizu</h2>
-<h3>作品公式サイトへ</h3>
-<img src="https://studiochizu.com/wp-content/themes/schizu/assets/images/SW@2x.jpg" alt="Imagen de la noticia"><br>
-<p>El reconocido estudio Studio Chizu ha revelado una importante noticia a través de sus redes sociales. En un mensaje en japonés que invita a los seguidores a visitar el sitio web oficial de la empresa, se insinúa la posible confirmación de un nuevo proyecto cinematográfico. Este anuncio ha generado gran expectación entre los aficionados al cine japonés, quienes aguardan con entusiasmo por descubrir más detalles acerca de esta misteriosa producción. Sin duda, este avance ha dejado a todos ansiosos por conocer qué sorpresas nos tiene preparadas Studio Chizu.</p>
-<p><a href="https://scarlet-movie.jp/" target="_blank">Leer más en la web oficial</a></p>
-<hr>
-<h2>Studio Khara</h2>
-<h3>åç°çå®å¬å¼ã¦ã§ã</h3>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Khara_Logo.png/250px-Khara_Logo.png" alt="Imagen de la noticia"><br>
-<p>El estudio Studio Khara reveló la creación de una nueva plataforma digital llamada 'Khara+Makoto Virtual Studio', en honor al famoso director de cine japonés Makoto Shinkai. Esta plataforma ofrecerá contenido exclusivo relacionado con las obras de Shinkai, como entrevistas, eventos especiales y acceso a material inédito. Los fans del cine japonés están emocionados ante esta noticia, ya que podrán sumergirse aún más en el fascinante universo cinematográfico de uno de los directores más aclamados de Japón.</p>
-<p><a href="https://www.khara.co.jp/news/mahiromaeda/" target="_blank">Leer más en la web oficial</a></p>
-<hr>
-<h2>Colorido</h2>
-<h3>STUDIO</h3>
-<img src="https://images.ctfassets.net/4cd45et68cgf/75zUQr6Bkw09PHOzw4y8OY/81b66a9a14c7309c8df3741f6487fe0a/220422_Netflix_Colorido_5000px_Final_EN.jpg" alt="Imagen de la noticia"><br>
-<p>El estudio Colorido, reconocido por producciones como "Penguin Highway" y "A Whisker Away", ha anunciado emocionantes novedades para los amantes del cine japonés. Bajo el título "STUDIO", revelaron la creación de una nueva división dedicada exclusivamente a la producción de largometrajes animados. Este ambicioso proyecto promete seguir sorprendiendo al público con historias innovadoras y visualmente impactantes. Sin duda, una excelente noticia para aquellos que disfrutan del talento y la creatividad de este prestigioso estudio. ¡Estaremos atentos a todas las futuras producciones que nos tienen preparadas!</p>
-<p><a href="https://colorido.co.jp/studio/" target="_blank">Leer más en la web oficial</a></p>
-<hr>
-<h2>Polygon Pictures</h2>
-<h3>Links</h3>
-<img src="https://www.awn.com/sites/default/files/styles/original/public/image/featured/polygon1.jpg?itok=TyEL9XDT" alt="Imagen de la noticia"><br>
-<p>El estudio japonés Polygon Pictures anunció la producción de una nueva película titulada 'Links'. Esta cinta promete llevar a los espectadores a un mundo lleno de acción, aventuras y misterio, con una trama impactante y personajes memorables. Con un equipo de animadores expertos y una estética visual impresionante, 'Links' promete ser una experiencia cinematográfica única que no decepcionará a los aficionados del cine japonés. Preparaos para sumergiros en esta apasionante historia y descubrir un universo lleno de sorpresas y emociones. ¡No os perdáis este esperado estreno de Polygon Pictures!</p>
-<p><a href="https://www.ppi.co.jp/news/#" target="_blank">Leer más en la web oficial</a></p>
 
-  <!-- Última actualización: 2025-07-23T23:25:51.829397 -->
-  <footer>
-    <p>Invocado por el mago del celuloide Kirozawa 🎥🧙‍♂️</p>
-  </footer>
+  <div class="status" id="status">Cargando noticias de cine…</div>
+  <div class="container" id="news-container"></div>
+
+  <footer>&copy; 2025 Cultura Friki Hoy</footer>
+
+  <script>
+    const CATEGORIA="cine", ETIQUETA="Cine", NUM_DIAS=30, BASE_PATH="noticias";
+    const $=(s)=>document.querySelector(s);
+    function fechaDesdeOffset(n=0){const d=new Date();d.setDate(d.getDate()-n);const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),da=String(d.getDate()).padStart(2,"0");return `${y}-${m}-${da}`;}
+    function fechaLargaES(iso){const [y,m,d]=iso.split("-").map(Number);return new Intl.DateTimeFormat("es-ES",{day:"numeric",month:"long",year:"numeric"}).format(new Date(y,m-1,d));}
+    async function fetchJSON(p){try{const r=await fetch(p,{cache:"no-store"});return r.ok? r.json(): null;}catch{return null}}
+    function el(t,c,h){const e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e;}
+    function renderDia(container,fecha,items){
+      if(!items?.length) return;
+      const day=el("div","news-day");
+      day.appendChild(el("div","date-title","📅 Noticias del "+fechaLargaES(fecha)));
+      day.appendChild(document.createElement("hr"));
+      const list=el("div","news-list");
+      items.forEach(n=>{
+        const a=el("a","news-card"); a.href=n.link||"#"; a.target="_blank";
+        const img=el("img","news-img"); img.src=n.imagen||""; img.alt=n.titulo||"Noticia";
+        const c=el("div","news-content");
+        c.appendChild(el("h2",null,n.titulo||"Sin título"));
+        c.appendChild(el("p",null,n.resumen||""));
+        c.appendChild(el("span","tag",ETIQUETA));
+        a.appendChild(img); a.appendChild(c); list.appendChild(a);
+      });
+      day.appendChild(list); container.appendChild(day);
+    }
+    (async function(){
+      const cont=$("#news-container"), status=$("#status"); let pintado=false;
+      for(let i=0;i<NUM_DIAS;i++){
+        const fecha=fechaDesdeOffset(i);
+        const data=await fetchJSON(`${BASE_PATH}/${fecha}-${CATEGORIA}.json`);
+        if(Array.isArray(data)&&data.length){ renderDia(cont,fecha,data); pintado=true; }
+      }
+      status.textContent = pintado ? "" : "No hay noticias recientes de cine.";
+    })();
+  </script>
 </body>
 </html>
