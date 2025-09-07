@@ -297,7 +297,9 @@
           const path = `${BASE_PATH}/${fecha}-${t.tipo}.json`;
           const arr = await fetchJSONSafe(path);
           if(Array.isArray(arr) && arr.length){
-            const conTag = arr.map(n => ({
+            // === SOLO 2 TITULARES POR CATEGORÍA/DÍA EN EL INICIO ===
+            const top = arr.slice(0, 2);
+            const conTag = top.map(n => ({
               titulo: n.titulo || "",
               resumen: n.resumen || "",
               imagen:  n.imagen  || "",
