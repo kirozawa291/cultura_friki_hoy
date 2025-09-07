@@ -1,168 +1,186 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
   <title>Cultura Friki Hoy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg-main: #f8fafc;
-      --bg-card: #fff;
-      --border: #e2e8f0;
-      --title: #364fc7;
-      --subtitle: #6c757d;
-      --hover: #ffae34;
-      --text: #202124;
-      --menu: #f1f3f7;
+    :root{
+      --bg-main:#f8fafc;
+      --bg-card:#fff;
+      --border:#e2e8f0;
+      --title:#364fc7;
+      --subtitle:#6c757d;
+      --hover:#ffae34;
+      --text:#202124;
+      --menu:#f1f3f7;
     }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', 'Arial', sans-serif;
-      background: var(--bg-main);
-      color: var(--text);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Segoe UI','Arial',sans-serif;
+      background:var(--bg-main);
+      color:var(--text);
     }
-    header {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 0 10px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(70,85,105,.04);
+    /* Header + Nav (sin submenús) */
+    header{
+      background:var(--bg-card);
+      border-bottom:1px solid var(--border);
+      padding:20px 0 10px;
+      text-align:center;
+      box-shadow:0 2px 4px rgba(70,85,105,.04);
     }
-    header h1 {
-      margin: 0;
-      color: var(--title);
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      font-weight: 900;
+    header h1{
+      margin:0;
+      color:var(--title);
+      font-size:2.2rem;
+      letter-spacing:1px;
+      font-weight:900;
     }
-    nav {
-      background: var(--menu);
-      padding: 12px 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      border-bottom: 1px solid var(--border);
+    nav{
+      background:var(--menu);
+      padding:12px 0;
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      border-bottom:1px solid var(--border);
+      flex-wrap:wrap;
     }
-    nav a {
-      color: var(--title);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.07rem;
-      padding: 4px 8px;
-      border-radius: 6px;
-      transition: background .15s;
+    nav a{
+      color:var(--title);
+      text-decoration:none;
+      font-weight:600;
+      font-size:1.07rem;
+      padding:4px 8px;
+      border-radius:6px;
+      transition:background .15s,color .15s;
     }
-    nav a:hover {
-      background: var(--hover);
-      color: #fff;
-    }
-
-    .container {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 32px 16px 0;
+    nav a:hover{
+      background:var(--hover);
+      color:#fff;
     }
 
-    .news-day {
-      margin-bottom: 50px;
-    }
-    .date-title {
-      font-size: 1.15rem;
-      color: var(--subtitle);
-      margin: 0 0 14px 4px;
-      letter-spacing: 0.5px;
-      font-weight: 700;
-    }
-    hr {
-      border: none;
-      border-top: 1.5px solid var(--border);
-      margin: 8px 0 30px 0;
+    /* Contenido */
+    .container{
+      max-width:920px;
+      margin:0 auto;
+      padding:32px 16px 0;
+      min-height:60vh;
     }
 
-    .news-list {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    /* Bloque de día */
+    .news-day{ margin-bottom:50px; }
+    .date-title{
+      font-size:1.15rem;
+      color:var(--subtitle);
+      margin:0 0 14px 4px;
+      letter-spacing:.5px;
+      font-weight:700;
+    }
+    hr{
+      border:none;
+      border-top:1.5px solid var(--border);
+      margin:8px 0 30px 0;
+    }
+    .news-list{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
     }
 
-    .news-card {
-      display: flex;
-      align-items: stretch;
-      background: var(--bg-card);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(110,120,140,.05);
-      text-decoration: none;
-      color: inherit;
-      transition: box-shadow .17s, transform .12s;
-      border: 1.3px solid var(--border);
-      min-height: 120px;
+    /* Tarjeta de noticia */
+    .news-card{
+      display:flex;
+      align-items:stretch;
+      background:var(--bg-card);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 1px 4px rgba(110,120,140,.05);
+      text-decoration:none;
+      color:inherit;
+      transition:box-shadow .17s, transform .12s, border-color .12s, background .12s;
+      border:1.3px solid var(--border);
+      min-height:120px;
     }
-    .news-card:hover {
-      box-shadow: 0 2px 14px #ffae3425, 0 1.5px 6px rgba(54,79,199,0.08);
-      transform: translateY(-2px) scale(1.015);
-      border-color: var(--hover);
-      background: #fffbe8;
+    .news-card:hover{
+      box-shadow:0 2px 14px #ffae3425, 0 1.5px 6px rgba(54,79,199,0.08);
+      transform:translateY(-2px) scale(1.015);
+      border-color:var(--hover);
+      background:#fffbe8;
     }
-    .news-img {
-      flex: 0 0 140px;
-      width: 140px;
-      height: 100%;
-      object-fit: cover;
-      background: #ddd;
+    .news-img{
+      flex:0 0 140px;
+      width:140px;
+      height:100%;
+      object-fit:cover;
+      background:#ddd;
     }
-    .news-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 18px 22px;
+    .news-content{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:18px 22px;
+      gap:6px;
     }
-    .news-content h2 {
-      margin: 0 0 7px 0;
-      font-size: 1.11rem;
-      color: var(--title);
-      font-weight: 700;
-      letter-spacing: 0.5px;
+    .news-content h2{
+      margin:0;
+      font-size:1.11rem;
+      color:var(--title);
+      font-weight:700;
+      letter-spacing:.5px;
+      line-height:1.25;
     }
-    .news-content p {
-      margin: 0;
-      color: var(--text);
-      font-size: 0.97rem;
-      line-height: 1.35;
-      opacity: .91;
+    .news-content p{
+      margin:0;
+      color:var(--text);
+      font-size:.97rem;
+      line-height:1.35;
+      opacity:.95;
     }
-
-    .news-content .tag {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 2px 8px;
-      background: var(--hover);
-      color: #fff;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      opacity: .89;
-    }
-
-    @media (max-width: 650px) {
-      .container { padding: 18px 2vw 0;}
-      .news-card { flex-direction: column; }
-      .news-img { width: 100%; height: 175px;}
-      .news-content { padding: 13px 12px;}
+    .tag{
+      display:inline-block;
+      margin-top:6px;
+      padding:2px 8px;
+      background:var(--hover);
+      color:#fff;
+      border-radius:6px;
+      font-size:.8rem;
+      font-weight:600;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      opacity:.92;
+      align-self:flex-start;
     }
 
-    footer {
-      background: var(--bg-card);
-      color: var(--subtitle);
-      border-top: 1px solid var(--border);
-      text-align: center;
-      font-size: .98rem;
-      margin-top: 40px;
-      padding: 22px 8px 16px;
-      letter-spacing: 0.15px;
+    /* Responsive */
+    @media (max-width: 650px){
+      .container{ padding:18px 2vw 0; }
+      .news-card{ flex-direction:column; }
+      .news-img{ width:100%; height:175px; }
+      .news-content{ padding:13px 12px; }
+    }
+
+    /* Footer */
+    footer{
+      background:var(--bg-card);
+      color:var(--subtitle);
+      border-top:1px solid var(--border);
+      text-align:center;
+      font-size:.98rem;
+      margin-top:40px;
+      padding:22px 8px 16px;
+      letter-spacing:.15px;
+    }
+
+    /* Estado/cargador */
+    .status{
+      max-width:920px;
+      margin:24px auto 0;
+      color:#6b7280;
+      font-size:.95rem;
+      text-align:center;
+      padding:0 12px;
     }
   </style>
 </head>
@@ -180,68 +198,130 @@
     <a href="musica.html">Música</a>
   </nav>
 
-  <div class="container">
+  <div class="status" id="status">Cargando noticias…</div>
 
-    <!-- NOTICIAS DE UN DÍA -->
-    <div class="news-day">
-      <div class="date-title">📅 Noticias del 31 de julio</div>
-      <hr>
-      <div class="news-list">
-        <a class="news-card" href="anime.html#noticia1">
-          <img class="news-img" src="img/noticia1.jpg" alt="Noticia 1">
-          <div class="news-content">
-            <h2>Nueva temporada de Demon Slayer confirmada</h2>
-            <p>Ufotable anuncia el próximo arco con una animación que promete superar todo lo anterior.</p>
-            <span class="tag">Anime</span>
-          </div>
-        </a>
-        <a class="news-card" href="cine.html#noticia2">
-          <img class="news-img" src="img/noticia2.jpg" alt="Noticia 2">
-          <div class="news-content">
-            <h2>My Hero Academia: capítulo final revelado</h2>
-            <p>El manga llega a su clímax con un cierre épico que hizo llorar a miles de fans.</p>
-            <span class="tag">Cine</span>
-          </div>
-        </a>
-        <a class="news-card" href="musica.html#noticia3">
-          <img class="news-img" src="img/noticia3.jpg" alt="Noticia 3">
-          <div class="news-content">
-            <h2>LiSA vuelve a la música con nuevo álbum</h2>
-            <p>La cantante de “Gurenge” anuncia gira mundial y su regreso triunfal a los escenarios.</p>
-            <span class="tag">Música</span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- MÁS DÍAS: SOLO DUPLICA EL BLOQUE -->
-    <div class="news-day">
-      <div class="date-title">📅 Noticias del 30 de julio</div>
-      <hr>
-      <div class="news-list">
-        <a class="news-card" href="anime.html#noticia4">
-          <img class="news-img" src="img/noticia4.jpg" alt="Noticia 4">
-          <div class="news-content">
-            <h2>¡Spy x Family tendrá película live-action!</h2>
-            <p>El elenco japonés ya está confirmado y la producción comienza en agosto.</p>
-            <span class="tag">Anime</span>
-          </div>
-        </a>
-        <a class="news-card" href="cine.html#noticia5">
-          <img class="news-img" src="img/noticia5.jpg" alt="Noticia 5">
-          <div class="news-content">
-            <h2>Evangelion regresa a cines en 4K</h2>
-            <p>Hideaki Anno sorprende al mundo con una remasterización nunca vista.</p>
-            <span class="tag">Cine</span>
-          </div>
-        </a>
-      </div>
-    </div>
-
+  <div class="container" id="news-container">
+    <!-- El script insertará aquí los días y tarjetas -->
   </div>
 
   <footer>
     &copy; 2025 Cultura Friki Hoy. Inspirado por el alma otaku, impulsado por IA.
   </footer>
+
+  <noscript>
+    <div class="status">Activa JavaScript para ver las noticias.</div>
+  </noscript>
+
+  <!-- ====================== JS EMBEBIDO (no necesitas archivos extra) ====================== -->
+  <script>
+    // ---------- CONFIG ----------
+    const TIPOS = [
+      { tipo: "anime",  etiqueta: "Anime"  },
+      { tipo: "cine",   etiqueta: "Cine"   },
+      { tipo: "musica", etiqueta: "Música" }
+    ];
+    const NUM_DIAS = 7;            // ¿cuántos días hacia atrás mostrar?
+    const BASE_PATH = "noticias";  // carpeta donde subes tus JSON
+
+    // ---------- HELPERS ----------
+    function fechaDesdeOffset(n=0){
+      const d=new Date(); d.setDate(d.getDate()-n);
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      return `${yyyy}-${mm}-${dd}`;
+    }
+    function fechaLargaES(iso){
+      const [y,m,d]=iso.split("-").map(Number);
+      return new Intl.DateTimeFormat("es-ES",{day:"numeric",month:"long",year:"numeric"})
+        .format(new Date(y,m-1,d));
+    }
+    async function fetchJSONSafe(path){
+      try{
+        const r = await fetch(path, { cache:"no-store" });
+        if(!r.ok) return null;
+        return await r.json();
+      }catch(_){ return null; }
+    }
+    function el(tag, cls, html){
+      const e = document.createElement(tag);
+      if(cls) e.className = cls;
+      if(html !== undefined) e.innerHTML = html;
+      return e;
+    }
+
+    // ---------- RENDER ----------
+    function renderDia(container, fechaISO, items){
+      if(!items.length) return;
+      const day = el("div","news-day");
+      day.appendChild(el("div","date-title","📅 Noticias del " + fechaLargaES(fechaISO)));
+      day.appendChild(document.createElement("hr"));
+
+      const list = el("div","news-list");
+      items.forEach(n=>{
+        const a = el("a","news-card");
+        a.href = n.link || "#";
+        a.target = "_blank"; // abre en nueva pestaña
+
+        const img = el("img","news-img");
+        img.src = n.imagen || "";
+        img.alt = n.titulo || "Noticia";
+
+        const c = el("div","news-content");
+        c.appendChild(el("h2",null,n.titulo || "Sin título"));
+        c.appendChild(el("p",null,n.resumen || ""));
+        c.appendChild(el("span","tag",n.tag || ""));
+
+        a.appendChild(img);
+        a.appendChild(c);
+        list.appendChild(a);
+      });
+      day.appendChild(list);
+      container.appendChild(day);
+    }
+
+    // ---------- MAIN ----------
+    async function cargarNoticiasIndex(){
+      const cont = document.getElementById("news-container");
+      const status = document.getElementById("status");
+      if(!cont) return;
+
+      let pintóAlgo = false;
+
+      for(let i=0;i<NUM_DIAS;i++){
+        const fecha = fechaDesdeOffset(i);
+        let acumuladas = [];
+
+        // para cada tipo (anime/cine/musica) intenta cargar el JSON de esa fecha
+        for(const t of TIPOS){
+          const path = `${BASE_PATH}/${fecha}-${t.tipo}.json`;
+          const arr = await fetchJSONSafe(path);
+          if(Array.isArray(arr) && arr.length){
+            const conTag = arr.map(n => ({
+              titulo: n.titulo || "",
+              resumen: n.resumen || "",
+              imagen:  n.imagen  || "",
+              link:    n.link    || "#",
+              tag:     t.etiqueta
+            }));
+            acumuladas = acumuladas.concat(conTag);
+          }
+        }
+
+        if(acumuladas.length){
+          renderDia(cont, fecha, acumuladas);
+          pintóAlgo = true;
+        }
+      }
+
+      status.textContent = pintóAlgo
+        ? " "
+        : "No hay noticias para los últimos días. Sube tus JSON a /noticias y recarga.";
+    }
+
+    document.addEventListener("DOMContentLoaded", cargarNoticiasIndex);
+  </script>
+  <!-- ==================== /JS EMBEBIDO ==================== -->
+
 </body>
 </html>
