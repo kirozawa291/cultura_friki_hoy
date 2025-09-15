@@ -2,11 +2,11 @@ name: generar-noticias-oficiales
 
 on:
   schedule:
-    - cron: '0 8 * * *'   # 08:00 UTC diario
-  workflow_dispatch:       # Ejecutar manualmente
+    - cron: '0 8 * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: write          # Para hacer commit/push
+  contents: write
 
 jobs:
   run:
@@ -25,23 +25,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      # ✅ Chequeo simple del secret (sin imprimirlo)
       - name: Secret check
         env:
           SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
         run: |
           if [ -z "$SERPAPI_API_KEY" ]; then
-            echo "❌ SERPAPI_API_KEY NO está disponible para el job"
+            echo "SERPAPI_API_KEY NO está disponible para el job"
             exit 1
           fi
-          echo "✅ SERPAPI_API_KEY está presente"
+          echo "SERPAPI_API_KEY está presente"
           python -c 'import os; print("Longitud del secret vista por Python:", len(os.getenv("SERPAPI_API_KEY","")))'
 
       - name: Run generator
         env:
           SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
         run: |
-          test -f scripts/generar_jsons.py || (echo "❌ Falta scripts/generar_jsons.py"; ls -la; exit 1)
+          test -f scripts/generar_jsons.py || (echo "Falta scripts/generar_jsons.py"; ls -la; exit 1)
           python scripts/generar_jsons.py
 
       - name: Commit & push JSON
