@@ -40,3 +40,20 @@ jobs:
           git add noticias/*.json
           git commit -m "news(oficiales): $(date -u +%F)" || echo "No changes"
           git push
+
+                - name: Secret check (no imprime la clave)
+        env:
+          HAS: ${{ secrets.SERPAPI_API_KEY }}
+        run: |
+          if [ -z "$HAS" ]; then
+            echo "❌ SERPAPI_API_KEY NO está disponible para el job"
+            exit 1
+          else
+            echo "✅ SERPAPI_API_KEY está presente en el job"
+            python - << 'PY'
+import os
+v = os.getenv("SERPAPI_API_KEY", "")
+print("Longitud del secret vista por Python:", len(v))
+PY
+          fi
+
