@@ -5,10 +5,14 @@
   <title>Anime | Cultura Friki Hoy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body{margin:0;font-family:'Segoe UI','Arial',sans-serif;background:#f8fafc;color:#202124}
-    header,footer{background:#fff;border-bottom:1px solid #e2e8f0;text-align:center;padding:16px}
-    h1{margin:0;color:#364fc7}
-    .container{max-width:960px;margin:0 auto;padding:20px 12px}
+    :root{--bg-main:#f8fafc;--bg-card:#fff;--border:#e2e8f0;--title:#364fc7;--subtitle:#6c757d;--hover:#ffae34;--text:#202124;--menu:#f1f3f7}
+    *{box-sizing:border-box} body{margin:0;font-family:'Segoe UI','Arial',sans-serif;background:var(--bg-main);color:var(--text)}
+    header{background:var(--bg-card);border-bottom:1px solid var(--border);padding:20px 0 10px;text-align:center;box-shadow:0 2px 4px rgba(70,85,105,.04)}
+    header h1{margin:0;color:var(--title);font-size:2rem;letter-spacing:1px;font-weight:900}
+    nav{background:var(--menu);padding:12px 0;display:flex;justify-content:center;gap:30px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+    nav a{color:var(--title);text-decoration:none;font-weight:600;font-size:1.07rem;padding:4px 8px;border-radius:6px;transition:background .15s,color .15s}
+    nav a:hover{background:var(--hover);color:#fff}
+    .container{max-width:960px;margin:0 auto;padding:20px 12px;min-height:60vh}
     .grid{display:grid;grid-template-columns:1fr;gap:18px}
     .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
     .row{display:flex;gap:14px;align-items:stretch}
@@ -20,35 +24,39 @@
     .btns{margin-top:6px;display:flex;gap:10px}
     .btn{display:inline-block;background:#ffae34;color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700}
     @media (max-width:720px){.row{flex-direction:column}.img{width:100%;height:200px}}
+    footer{background:var(--bg-card);color:var(--subtitle);border-top:1px solid var(--border);text-align:center;font-size:.98rem;margin-top:40px;padding:22px 8px 16px}
   </style>
 </head>
 <body>
   <header><h1>Anime — Cultura Friki Hoy</h1></header>
+
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="anime.html">Anime</a>
+    <a href="cine.html">Cine</a>
+    <a href="manga.html">Manga</a>
+    <a href="musica.html">Música</a>
+  </nav>
+
   <div class="container">
     <div id="estado">Cargando…</div>
     <div class="grid" id="grid"></div>
   </div>
+
   <footer>&copy; 2025 Cultura Friki Hoy</footer>
 
   <script>
-    const CATEGORIA = "cine";              // <- cambia a "cine" o "musica" en las otras páginas
+    const CATEGORIA = "cine";       // <-- Cambia a "cine" o "musica" en las otras páginas
     const BASE_PATH = "noticias";
     const DIAS = 14;
 
-    function fechaUTC(n=0){
-      const d=new Date(); d.setUTCDate(d.getUTCDate()-n);
-      const y=d.getUTCFullYear(), m=String(d.getUTCMonth()+1).padStart(2,"0"), dd=String(d.getUTCDate()).padStart(2,"0");
-      return `${y}-${m}-${dd}`;
-    }
-    async function get(path){
-      try{ const r=await fetch(path,{cache:"no-store"}); if(!r.ok) return null; return await r.json(); }
-      catch{ return null; }
-    }
+    function fechaUTC(n=0){const d=new Date();d.setUTCDate(d.getUTCDate()-n);const y=d.getUTCFullYear(),m=String(d.getUTCMonth()+1).padStart(2,"0"),dd=String(d.getUTCDate()).padStart(2,"0");return `${y}-${m}-${dd}`}
+    async function get(path){try{const r=await fetch(path,{cache:"no-store"});if(!r.ok)return null;return await r.json()}catch{return null}}
     function card(n){
       const el=document.createElement("div"); el.className="card";
-      el.innerHTML = `
+      el.innerHTML=`
         <div class="row">
-          <img class="img" loading="lazy" src="${n.imagen||''}" alt="">
+          <img class="img" loading="lazy" src="${n.imagen||''}" alt="" onerror="this.style.display='none'">
           <div class="content">
             <h3 class="title">${n.titulo||'Sin título'}</h3>
             <p class="desc">${n.resumen||''}</p>
@@ -60,20 +68,16 @@
         </div>`;
       return el;
     }
-
     async function main(){
-      const grid=document.getElementById("grid");
-      const estado=document.getElementById("estado");
+      const grid=document.getElementById("grid"), estado=document.getElementById("estado");
       let items=[];
       for(let i=0;i<DIAS;i++){
-        const f = fechaUTC(i);
-        const arr = await get(`${BASE_PATH}/${f}-${CATEGORIA}.json`);
-        if(Array.isArray(arr)) items = items.concat(arr);
+        const f=fechaUTC(i);
+        const arr=await get(`${BASE_PATH}/${f}-${CATEGORIA}.json`);
+        if(Array.isArray(arr)) items=items.concat(arr);
       }
       if(!items.length){ estado.textContent="Sin noticias recientes."; return; }
-      estado.textContent="";
-      // opcional: ordenar por presencia de fecha/alfabético
-      items.forEach(n => grid.appendChild(card(n)));
+      estado.textContent=""; items.forEach(n=>grid.appendChild(card(n)));
     }
     main();
   </script>
