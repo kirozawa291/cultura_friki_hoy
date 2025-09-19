@@ -16,172 +16,36 @@
       --menu:#f1f3f7;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: 'Segoe UI','Arial',sans-serif;
-      background:var(--bg-main);
-      color:var(--text);
-    }
-    /* Header + Nav (sin submenús) */
-    header{
-      background:var(--bg-card);
-      border-bottom:1px solid var(--border);
-      padding:20px 0 10px;
-      text-align:center;
-      box-shadow:0 2px 4px rgba(70,85,105,.04);
-    }
-    header h1{
-      margin:0;
-      color:var(--title);
-      font-size:2.2rem;
-      letter-spacing:1px;
-      font-weight:900;
-    }
-    nav{
-      background:var(--menu);
-      padding:12px 0;
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      border-bottom:1px solid var(--border);
-      flex-wrap:wrap;
-    }
-    nav a{
-      color:var(--title);
-      text-decoration:none;
-      font-weight:600;
-      font-size:1.07rem;
-      padding:4px 8px;
-      border-radius:6px;
-      transition:background .15s,color .15s;
-    }
-    nav a:hover{
-      background:var(--hover);
-      color:#fff;
-    }
+    body{ margin:0; font-family:'Segoe UI','Arial',sans-serif; background:var(--bg-main); color:var(--text); }
+    header{ background:var(--bg-card); border-bottom:1px solid var(--border); padding:20px 0 10px; text-align:center; box-shadow:0 2px 4px rgba(70,85,105,.04); }
+    header h1{ margin:0; color:var(--title); font-size:2.2rem; letter-spacing:1px; font-weight:900; }
+    nav{ background:var(--menu); padding:12px 0; display:flex; justify-content:center; gap:30px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+    nav a{ color:var(--title); text-decoration:none; font-weight:600; font-size:1.07rem; padding:4px 8px; border-radius:6px; transition:background .15s,color .15s; }
+    nav a:hover{ background:var(--hover); color:#fff; }
 
-    /* Contenido */
-    .container{
-      max-width:920px;
-      margin:0 auto;
-      padding:32px 16px 0;
-      min-height:60vh;
-    }
-
-    /* Bloque de día */
+    .container{ max-width:920px; margin:0 auto; padding:32px 16px 0; min-height:60vh; }
     .news-day{ margin-bottom:50px; }
-    .date-title{
-      font-size:1.15rem;
-      color:var(--subtitle);
-      margin:0 0 14px 4px;
-      letter-spacing:.5px;
-      font-weight:700;
-    }
-    hr{
-      border:none;
-      border-top:1.5px solid var(--border);
-      margin:8px 0 30px 0;
-    }
-    .news-list{
-      display:flex;
-      flex-direction:column;
-      gap:24px;
-    }
+    .date-title{ font-size:1.15rem; color:var(--subtitle); margin:0 0 14px 4px; letter-spacing:.5px; font-weight:700; }
+    hr{ border:none; border-top:1.5px solid var(--border); margin:8px 0 30px 0; }
+    .news-list{ display:flex; flex-direction:column; gap:24px; }
 
-    /* Tarjeta de noticia */
-    .news-card{
-      display:flex;
-      align-items:stretch;
-      background:var(--bg-card);
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 1px 4px rgba(110,120,140,.05);
-      text-decoration:none;
-      color:inherit;
-      transition:box-shadow .17s, transform .12s, border-color .12s, background .12s;
-      border:1.3px solid var(--border);
-      min-height:120px;
-    }
-    .news-card:hover{
-      box-shadow:0 2px 14px #ffae3425, 0 1.5px 6px rgba(54,79,199,0.08);
-      transform:translateY(-2px) scale(1.015);
-      border-color:var(--hover);
-      background:#fffbe8;
-    }
-    .news-img{
-      flex:0 0 140px;
-      width:140px;
-      height:100%;
-      object-fit:cover;
-      background:#ddd;
-    }
-    .news-content{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      padding:18px 22px;
-      gap:6px;
-    }
-    .news-content h2{
-      margin:0;
-      font-size:1.11rem;
-      color:var(--title);
-      font-weight:700;
-      letter-spacing:.5px;
-      line-height:1.25;
-    }
-    .news-content p{
-      margin:0;
-      color:var(--text);
-      font-size:.97rem;
-      line-height:1.35;
-      opacity:.95;
-    }
-    .tag{
-      display:inline-block;
-      margin-top:6px;
-      padding:2px 8px;
-      background:var(--hover);
-      color:#fff;
-      border-radius:6px;
-      font-size:.8rem;
-      font-weight:600;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-      opacity:.92;
-      align-self:flex-start;
-    }
+    .news-card{ display:flex; align-items:stretch; background:var(--bg-card); border-radius:12px; overflow:hidden; box-shadow:0 1px 4px rgba(110,120,140,.05); text-decoration:none; color:inherit; transition:box-shadow .17s, transform .12s, border-color .12s, background .12s; border:1.3px solid var(--border); min-height:120px; }
+    .news-card:hover{ box-shadow:0 2px 14px #ffae3425, 0 1.5px 6px rgba(54,79,199,0.08); transform:translateY(-2px) scale(1.015); border-color:var(--hover); background:#fffbe8; }
+    .news-img{ flex:0 0 140px; width:140px; height:100%; object-fit:cover; background:#ddd; }
+    .news-content{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:18px 22px; gap:6px; }
+    .news-content h2{ margin:0; font-size:1.11rem; color:var(--title); font-weight:700; letter-spacing:.5px; line-height:1.25; }
+    .news-content p{ margin:0; color:var(--text); font-size:.97rem; line-height:1.35; opacity:.95; }
+    .tag{ display:inline-block; margin-top:6px; padding:2px 8px; background:var(--hover); color:#fff; border-radius:6px; font-size:.8rem; font-weight:600; letter-spacing:.5px; text-transform:uppercase; opacity:.92; align-self:flex-start; }
 
-    /* Responsive */
-    @media (max-width: 650px){
+    @media (max-width:650px){
       .container{ padding:18px 2vw 0; }
       .news-card{ flex-direction:column; }
       .news-img{ width:100%; height:175px; }
       .news-content{ padding:13px 12px; }
     }
 
-    /* Footer */
-    footer{
-      background:var(--bg-card);
-      color:var(--subtitle);
-      border-top:1px solid var(--border);
-      text-align:center;
-      font-size:.98rem;
-      margin-top:40px;
-      padding:22px 8px 16px;
-      letter-spacing:.15px;
-    }
-
-    /* Estado/cargador */
-    .status{
-      max-width:920px;
-      margin:24px auto 0;
-      color:#6b7280;
-      font-size:.95rem;
-      text-align:center;
-      padding:0 12px;
-    }
+    footer{ background:var(--bg-card); color:var(--subtitle); border-top:1px solid var(--border); text-align:center; font-size:.98rem; margin-top:40px; padding:22px 8px 16px; letter-spacing:.15px; }
+    .status{ max-width:920px; margin:24px auto 0; color:#6b7280; font-size:.95rem; text-align:center; padding:0 12px; }
   </style>
 </head>
 <body>
@@ -200,19 +64,14 @@
 
   <div class="status" id="status">Cargando noticias…</div>
 
-  <div class="container" id="news-container">
-    <!-- El script insertará aquí los días y tarjetas -->
-  </div>
+  <div class="container" id="news-container"></div>
 
   <footer>
     &copy; 2025 Cultura Friki Hoy. Inspirado por el alma otaku, impulsado por IA.
   </footer>
 
-  <noscript>
-    <div class="status">Activa JavaScript para ver las noticias.</div>
-  </noscript>
+  <noscript><div class="status">Activa JavaScript para ver las noticias.</div></noscript>
 
-  <!-- ====================== JS EMBEBIDO ====================== -->
   <script>
     // ---------- CONFIG ----------
     const TIPOS = [
@@ -220,12 +79,11 @@
       { tipo: "cine",   etiqueta: "Cine"   },
       { tipo: "musica", etiqueta: "Música" }
     ];
-    const NUM_DIAS = 14;            // miramos 14 días hacia atrás
-    const BASE_PATH = "noticias";   // carpeta con los JSON
-    const DEBUG = false;            // ponlo true si quieres ver en consola qué URLs intenta
+    const NUM_DIAS = 14;
+    const BASE_PATH = "noticias";
+    const DEBUG = false;
 
     // ---------- HELPERS ----------
-    // FECHA EN UTC para que coincida con lo que escribe el runner (evita desfases)
     function fechaUTCDesdeOffset(n=0){
       const d = new Date();
       d.setUTCDate(d.getUTCDate()-n);
@@ -263,8 +121,8 @@
       const list = el("div","news-list");
       items.forEach(n=>{
         const a = el("a","news-card");
-        a.href = n.link || "#";
-        a.target = "_blank";
+        a.href = n.link || "#";        // ahora apunta a anime.html / cine.html / musica.html
+        a.target = "_self";            // abre en la misma pestaña (mejor UX para navegar dentro del sitio)
 
         const img = el("img","news-img");
         img.loading = "lazy";
@@ -294,7 +152,7 @@
       let pintóAlgo = false;
 
       for(let i=0;i<NUM_DIAS;i++){
-        const fecha = fechaUTCDesdeOffset(i);   // <-- clave: usar UTC
+        const fecha = fechaUTCDesdeOffset(i);
         let acumuladas = [];
 
         for(const t of TIPOS){
@@ -302,12 +160,13 @@
           if (DEBUG) console.log("Intento:", path);
           const arr = await fetchJSONSafe(path);
           if(Array.isArray(arr) && arr.length){
-            const top = arr.slice(0, 2); // 2 por categoría/día
+            const top = arr.slice(0, 2);
             const conTag = top.map(n => ({
               titulo: n.titulo || "",
               resumen: n.resumen || "",
               imagen:  n.imagen  || "",
-              link:    n.link    || "#",
+              // *** AQUÍ EL CAMBIO: llevar a la sección en lugar del enlace externo ***
+              link:    `${t.tipo}.html`,
               tag:     t.etiqueta
             }));
             acumuladas = acumuladas.concat(conTag);
@@ -327,7 +186,5 @@
 
     document.addEventListener("DOMContentLoaded", cargarNoticiasIndex);
   </script>
-  <!-- ==================== /JS EMBEBIDO ==================== -->
-
 </body>
 </html>
