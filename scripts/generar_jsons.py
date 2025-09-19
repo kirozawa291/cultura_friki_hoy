@@ -9,43 +9,42 @@ OUTDIR = "noticias"
 
 SOURCES = {
     "anime": [
-        {"name": "MAPPA", "domain": "mappa.co.jp"},
-        {"name": "Studio Ghibli", "domain": "ghibli.jp"},
-        {"name": "Toei Animation", "domain": "toei-anim.co.jp"},
-        {"name": "Bones", "domain": "bones.co.jp"},
-        {"name": "TRIGGER", "domain": "trigger.co.jp"},
-        {"name": "Kyoto Animation", "domain": "kyotoanimation.co.jp"},
-        {"name": "ufotable", "domain": "ufotable.com"},
-        {"name": "A-1 Pictures", "domain": "a1-pictures.co.jp"},
-        {"name": "CloverWorks", "domain": "cloverworks.co.jp"},
-        {"name": "Pierrot", "domain": "pierrot.jp"},
-        {"name": "Bandai Namco Filmworks (Sunrise)", "domain": "sunrise-world.net"},
-        {"name": "Aniplex", "domain": "aniplex.co.jp"},
-        {"name": "TOHO animation", "domain": "toho.co.jp"},
+        {"name":"MAPPA","domain":"mappa.co.jp"},
+        {"name":"Studio Ghibli","domain":"ghibli.jp"},
+        {"name":"Toei Animation","domain":"toei-anim.co.jp"},
+        {"name":"Bones","domain":"bones.co.jp"},
+        {"name":"TRIGGER","domain":"trigger.co.jp"},
+        {"name":"Kyoto Animation","domain":"kyotoanimation.co.jp"},
+        {"name":"ufotable","domain":"ufotable.com"},
+        {"name":"A-1 Pictures","domain":"a1-pictures.co.jp"},
+        {"name":"CloverWorks","domain":"cloverworks.co.jp"},
+        {"name":"Pierrot","domain":"pierrot.jp"},
+        {"name":"Bandai Namco Filmworks (Sunrise)","domain":"sunrise-world.net"},
+        {"name":"Aniplex","domain":"aniplex.co.jp"},
+        {"name":"TOHO animation","domain":"toho.co.jp"},
     ],
     "cine": [
-        {"name": "TOHO", "domain": "toho.co.jp"},
-        {"name": "Toei Company", "domain": "toei.co.jp"},
-        {"name": "Warner Bros. Japan", "domain": "warnerbros.co.jp"},
-        {"name": "Sony Pictures JP", "domain": "sonypictures.jp"},
-        {"name": "Kadokawa Pictures", "domain": "kadokawa-pictures.jp"},
-        {"name": "Shochiku", "domain": "shochiku.co.jp"},
-        {"name": "Disney Newsroom", "domain": "press.disney.co.jp"},
-        {"name": "Universal JP", "domain": "universalpictures.jp"},
-        {"name": "Paramount Pictures", "domain": "paramount.com"},
-        {"name": "Warner Bros.", "domain": "warnerbros.com"},
-        {"name": "Sony Pictures", "domain": "sonypictures.com"},
-        {"name": "Universal Pictures", "domain": "universalpictures.com"},
-        {"name": "20th Century", "domain": "20thcenturystudios.com"},
-        {"name": "Netflix", "domain": "about.netflix.com"},
-        {"name": "Prime Video", "domain": "aboutamazon.com"},
+        {"name":"TOHO","domain":"toho.co.jp"},
+        {"name":"Toei Company","domain":"toei.co.jp"},
+        {"name":"Warner Bros. Japan","domain":"warnerbros.co.jp"},
+        {"name":"Sony Pictures JP","domain":"sonypictures.jp"},
+        {"name":"Kadokawa Pictures","domain":"kadokawa-pictures.jp"},
+        {"name":"Shochiku","domain":"shochiku.co.jp"},
+        {"name":"Disney Newsroom","domain":"press.disney.co.jp"},
+        {"name":"Universal JP","domain":"universalpictures.jp"},
+        {"name":"Paramount Pictures","domain":"paramount.com"},
+        {"name":"Warner Bros.","domain":"warnerbros.com"},
+        {"name":"Sony Pictures","domain":"sonypictures.com"},
+        {"name":"Universal Pictures","domain":"universalpictures.com"},
+        {"name":"20th Century","domain":"20thcenturystudios.com"},
+        {"name":"Netflix","domain":"about.netflix.com"},
+        {"name":"Prime Video","domain":"aboutamazon.com"},
     ],
 }
 
 MAX_ITEMS = {"anime": 12, "cine": 12}
 HEADERS = {"User-Agent": "Mozilla/5.0 (CulturaFrikiBot/1.0)"}
 
-# -------- Utils --------
 def today_utc_str():
     return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
@@ -58,11 +57,10 @@ def summarize(text, max_chars=220):
 def is_valid_url(u):
     if not u: return False
     p = urlparse(u)
-    if p.scheme not in ("http", "https"): return False
+    if p.scheme not in ("http","https"): return False
     dom = (p.netloc or "").lower()
     if not dom: return False
-    bad = ["facebook.com","x.com","twitter.com","instagram.com"]
-    return not any(b in dom for b in bad)
+    return not any(b in dom for b in ["facebook.com","x.com","twitter.com","instagram.com"])
 
 def serpapi_google_news(domain, num=10, when="7d", hl="es"):
     url = "https://serpapi.com/search.json"
@@ -73,15 +71,13 @@ def serpapi_google_news(domain, num=10, when="7d", hl="es"):
     if "error" in data: raise RuntimeError(data["error"])
     return data.get("news_results", []) or []
 
-REL_MAP = [
-    (r"(\d+)\s*min", "minutes"),
-    (r"(\d+)\s*hour|\b(\d+)\s*hora", "hours"),
-    (r"(\d+)\s*day|\b(\d+)\s*día", "days"),
-]
 def parse_relative_to_utc(s: str):
     if not s: return None
     s = s.lower()
-    for pat, unit in REL_MAP:
+    # min/hora/día en ES/EN
+    for pat, unit in [(r"(\d+)\s*min", "minutes"),
+                      (r"(\d+)\s*hour|(\d+)\s*hora", "hours"),
+                      (r"(\d+)\s*day|(\d+)\s*día", "days")]:
         m = re.search(pat, s)
         if m:
             n = int([g for g in m.groups() if g][0])
@@ -92,15 +88,15 @@ def parse_relative_to_utc(s: str):
         return None
 
 def recent_only(results, window_days=3):
-    out = []
     cutoff = datetime.now(timezone.utc) - timedelta(days=window_days)
+    boxed = []
     for n in results:
         d = n.get("date") or n.get("date_utc") or ""
         ts = parse_relative_to_utc(d) if isinstance(d, str) else None
         if ts and ts >= cutoff:
-            out.append((n, ts))
-    out.sort(key=lambda x: x[1], reverse=True)
-    return [n for n,_ in out]
+            boxed.append((n, ts))
+    boxed.sort(key=lambda x: x[1], reverse=True)
+    return [n for n,_ in boxed]
 
 def get_og_image(url):
     try:
@@ -113,10 +109,10 @@ def get_og_image(url):
     except Exception: pass
     return None
 
-def serp_images_first(query):
+def serp_images_first(q):
     try:
         url = "https://serpapi.com/search.json"
-        params = {"engine":"google_images","q":query,"api_key":SERPAPI_KEY}
+        params = {"engine":"google_images","q":q,"api_key":SERPAPI_KEY}
         r = requests.get(url, params=params, timeout=30); r.raise_for_status()
         arr = r.json().get("images_results", [])
         if arr: return arr[0].get("original") or arr[0].get("thumbnail")
@@ -124,7 +120,7 @@ def serp_images_first(query):
     return None
 
 def build_items(results, limit_per_source=4, categoria=""):
-    items = []
+    out = []
     for n in results[:limit_per_source*2]:
         title = clean(n.get("title"))
         link  = n.get("link") or (n.get("source") or {}).get("link")
@@ -134,15 +130,8 @@ def build_items(results, limit_per_source=4, categoria=""):
         img = get_og_image(link) or serp_images_first(title) or \
               "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
         pub = n.get("date") or n.get("date_utc") or ""
-        items.append({
-            "titulo": title,
-            "resumen": resumen,
-            "imagen":  img,
-            "link":    link,
-            "publicado": pub,
-            "categoria": categoria
-        })
-    return items
+        out.append({"titulo":title,"resumen":resumen,"imagen":img,"link":link,"publicado":pub,"categoria":categoria})
+    return out
 
 def dedupe(items):
     seen, out = set(), []
@@ -152,31 +141,35 @@ def dedupe(items):
         seen.add(key); out.append(it)
     return out
 
-def run_category(cat_key):
+def run_category(cat):
     merged = []
-    for src in SOURCES[cat_key]:
+    for src in SOURCES[cat]:
         try:
             res = serpapi_google_news(src["domain"], num=10, when="7d", hl="es")
-            res = recent_only(res, window_days=3)  # ← solo últimos 3 días
-            got = build_items(res, limit_per_source=4, categoria=cat_key)
+            res = recent_only(res, window_days=3)  # solo últimos 3 días
+            got = build_items(res, limit_per_source=4, categoria=cat)
             merged.extend(got); time.sleep(1)
         except Exception as e:
-            print(f"[{cat_key}] Error con {src['domain']}: {e}")
-    return dedupe(merged)[:MAX_ITEMS[cat_key]]
+            print(f"[{cat}] Error {src['domain']}: {e}")
+    merged = dedupe(merged)[:MAX_ITEMS[cat]]
+    print(f"[{cat}] items finales: {len(merged)}")
+    return merged
 
 def save_json(fecha, categoria, items):
     os.makedirs(OUTDIR, exist_ok=True)
     path = os.path.join(OUTDIR, f"{fecha}-{categoria}.json")
     with open(path, "w", encoding="utf-8") as f:
         json.dump(items, f, ensure_ascii=False, indent=2)
-    print("✔️", path, len(items), "items")
+    print(f"✔️ Escrito {path} ({len(items)} items)")
 
 def main():
     if not SERPAPI_KEY:
-        raise SystemExit("❌ Falta SERPAPI_API_KEY (configura el secret en GitHub).")
+        raise SystemExit("❌ Falta SERPAPI_API_KEY.")
     fecha = today_utc_str()
+    print("Hoy (UTC):", fecha)
     anime = run_category("anime")
     cine  = run_category("cine")
+    # Siempre escribimos archivos de HOY, aunque estén vacíos
     save_json(fecha, "anime", anime)
     save_json(fecha, "cine",  cine)
 
