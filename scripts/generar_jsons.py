@@ -1,16 +1,11 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
+# scripts/generar_jsons.py
 import os, json, re, time
 from datetime import datetime, timezone, timedelta
 from urllib.parse import urlparse
 import requests
 
-# ======= CONFIG =======
 SERPAPI_KEY = os.getenv("SERPAPI_API_KEY", "")
 OUTDIR = "noticias"
-MAX_ITEMS = {"anime": 12, "cine": 12}
-MAX_AGE_HOURS = 48  # solo noticias de las últimas 48 horas
 
 SOURCES = {
     "anime": [
@@ -24,7 +19,7 @@ SOURCES = {
         {"name": "A-1 Pictures", "domain": "a1-pictures.co.jp"},
         {"name": "CloverWorks", "domain": "cloverworks.co.jp"},
         {"name": "Pierrot", "domain": "pierrot.jp"},
-        {"name": "Sunrise", "domain": "sunrise-world.net"},
+        {"name": "Bandai Namco Filmworks (Sunrise)", "domain": "sunrise-world.net"},
         {"name": "Aniplex", "domain": "aniplex.co.jp"},
         {"name": "TOHO animation", "domain": "toho.co.jp"},
     ],
@@ -33,178 +28,141 @@ SOURCES = {
         {"name": "Toei Company", "domain": "toei.co.jp"},
         {"name": "Warner Bros. Japan", "domain": "warnerbros.co.jp"},
         {"name": "Sony Pictures JP", "domain": "sonypictures.jp"},
-        {"name": "Kadokawa", "domain": "kadokawa.co.jp"},
+        {"name": "Kadokawa Pictures", "domain": "kadokawa-pictures.jp"},
         {"name": "Shochiku", "domain": "shochiku.co.jp"},
-        {"name": "Disney JP", "domain": "press.disney.co.jp"},
+        {"name": "Disney Newsroom", "domain": "press.disney.co.jp"},
         {"name": "Universal JP", "domain": "universalpictures.jp"},
-        # occidente (puedes comentar lo que no quieras)
+        {"name": "Paramount Pictures", "domain": "paramount.com"},
         {"name": "Warner Bros.", "domain": "warnerbros.com"},
         {"name": "Sony Pictures", "domain": "sonypictures.com"},
-        {"name": "Universal", "domain": "universalpictures.com"},
-        {"name": "Paramount", "domain": "paramount.com"},
+        {"name": "Universal Pictures", "domain": "universalpictures.com"},
+        {"name": "20th Century", "domain": "20thcenturystudios.com"},
         {"name": "Netflix", "domain": "about.netflix.com"},
+        {"name": "Prime Video", "domain": "aboutamazon.com"},
     ],
 }
 
+MAX_ITEMS = {"anime": 12, "cine": 12}
 HEADERS = {"User-Agent": "Mozilla/5.0 (CulturaFrikiBot/1.0)"}
 
-# ======= UTILS =======
+# -------- Utils --------
 def today_utc_str():
     return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-def clean(s: str) -> str:
-    if not s:
-        return ""
-    return re.sub(r"\s+", " ", s).strip()
+def clean(s): return re.sub(r"\s+", " ", s or "").strip()
 
-def summarize(text: str, max_chars=220) -> str:
+def summarize(text, max_chars=220):
     s = clean(text)
-    return (s[: max_chars - 1].rstrip() + "…") if len(s) > max_chars else s
+    return (s[:max_chars-1].rstrip() + "…") if len(s) > max_chars else s
 
-def parse_relative_age_to_hours(s: str) -> int | None:
-    """
-    Convierte cadenas tipo '3 hours ago', '1 hour ago', '2 days ago' a horas (int).
-    Si viene una fecha absoluta, devuelve None y lo dejamos pasar.
-    """
-    if not s:
-        return None
+def is_valid_url(u):
+    if not u: return False
+    p = urlparse(u)
+    if p.scheme not in ("http", "https"): return False
+    dom = (p.netloc or "").lower()
+    if not dom: return False
+    bad = ["facebook.com","x.com","twitter.com","instagram.com"]
+    return not any(b in dom for b in bad)
+
+def serpapi_google_news(domain, num=10, when="7d", hl="es"):
+    url = "https://serpapi.com/search.json"
+    params = {"engine":"google_news","q":f"site:{domain}","hl":hl,"gl":"es","api_key":SERPAPI_KEY,"num":num,"when":when}
+    r = requests.get(url, params=params, timeout=30)
+    r.raise_for_status()
+    data = r.json()
+    if "error" in data: raise RuntimeError(data["error"])
+    return data.get("news_results", []) or []
+
+REL_MAP = [
+    (r"(\d+)\s*min", "minutes"),
+    (r"(\d+)\s*hour|\b(\d+)\s*hora", "hours"),
+    (r"(\d+)\s*day|\b(\d+)\s*día", "days"),
+]
+def parse_relative_to_utc(s: str):
+    if not s: return None
     s = s.lower()
-    m = re.search(r"(\d+)\s*(hour|hours|hr|hrs|día|días|day|days)", s)
-    if not m:
+    for pat, unit in REL_MAP:
+        m = re.search(pat, s)
+        if m:
+            n = int([g for g in m.groups() if g][0])
+            return datetime.now(timezone.utc) - timedelta(**{unit: n})
+    try:
+        return datetime.fromisoformat(s.replace("Z","+00:00"))
+    except Exception:
         return None
-    n = int(m.group(1))
-    unit = m.group(2)
-    if unit.startswith(("hour", "hr")):
-        return n
-    if unit.startswith(("día", "day", "días", "days")):
-        return n * 24
-    return None
 
-def is_http_url(u: str) -> bool:
-    return bool(u and u.startswith("http"))
+def recent_only(results, window_days=3):
+    out = []
+    cutoff = datetime.now(timezone.utc) - timedelta(days=window_days)
+    for n in results:
+        d = n.get("date") or n.get("date_utc") or ""
+        ts = parse_relative_to_utc(d) if isinstance(d, str) else None
+        if ts and ts >= cutoff:
+            out.append((n, ts))
+    out.sort(key=lambda x: x[1], reverse=True)
+    return [n for n,_ in out]
 
 def get_og_image(url):
     try:
         r = requests.get(url, headers=HEADERS, timeout=20, allow_redirects=True)
-        if r.status_code != 200:
-            return None
-        m = re.search(
-            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
-            r.text,
-            re.I,
-        )
-        if m:
-            return m.group(1)
-        m2 = re.search(
-            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']',
-            r.text,
-            re.I,
-        )
-        if m2:
-            return m2.group(1)
-    except Exception:
-        pass
+        if r.status_code != 200: return None
+        m = re.search(r'property=["\']og:image["\'][^>]+content=["\']([^"\']+)', r.text, re.I)
+        if m: return m.group(1)
+        m2 = re.search(r'name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)', r.text, re.I)
+        if m2: return m2.group(1)
+    except Exception: pass
     return None
 
 def serp_images_first(query):
     try:
         url = "https://serpapi.com/search.json"
-        params = {"engine": "google_images", "q": query, "api_key": SERPAPI_KEY}
-        r = requests.get(url, params=params, timeout=30)
-        r.raise_for_status()
+        params = {"engine":"google_images","q":query,"api_key":SERPAPI_KEY}
+        r = requests.get(url, params=params, timeout=30); r.raise_for_status()
         arr = r.json().get("images_results", [])
-        if arr:
-            return arr[0].get("original") or arr[0].get("thumbnail")
-    except Exception:
-        pass
+        if arr: return arr[0].get("original") or arr[0].get("thumbnail")
+    except Exception: pass
     return None
 
-def serpapi_google_news(domain, num=20, when="1d", hl="es", gl="es"):
-    """
-    Google News restringido al dominio (site:). 'when=1d' fuerza últimos 1-2 días.
-    """
-    url = "https://serpapi.com/search.json"
-    params = {
-        "engine": "google_news",
-        "q": f"site:{domain}",
-        "hl": hl,
-        "gl": gl,
-        "api_key": SERPAPI_KEY,
-        "num": num,
-        "when": when,
-    }
-    r = requests.get(url, params=params, timeout=30)
-    r.raise_for_status()
-    data = r.json()
-    if "error" in data:
-        raise RuntimeError(data["error"])
-    return data.get("news_results", []) or []
-
-def build_items(results, limit_per_source=6):
+def build_items(results, limit_per_source=4, categoria=""):
     items = []
-    for n in results[: limit_per_source * 2]:
-        title = clean(n.get("title") or "")
-        link = n.get("link") or n.get("source", {}).get("link")
-        snippet = clean(n.get("snippet") or n.get("description") or "")
-        date_str = clean(n.get("date") or n.get("published") or "")
-
-        if not title or not is_http_url(link):
-            continue
-
-        # descarta redes sociales/ruido
-        dom = urlparse(link).netloc.lower()
-        if any(b in dom for b in ["facebook.com", "x.com", "twitter.com", "instagram.com"]):
-            continue
-
-        # filtro por frescura si viene '3 hours ago', '2 days ago', etc.
-        age_h = parse_relative_age_to_hours(date_str)
-        if age_h is not None and age_h > MAX_AGE_HOURS:
-            continue
-
+    for n in results[:limit_per_source*2]:
+        title = clean(n.get("title"))
+        link  = n.get("link") or (n.get("source") or {}).get("link")
+        if not title or not is_valid_url(link): continue
+        snippet = clean(n.get("snippet"))
         resumen = summarize(snippet) if snippet else "Resumen pendiente."
-        img = (
-            get_og_image(link)
-            or serp_images_first(title)
-            or "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
-        )
-
-        items.append(
-            {
-                "titulo": title,
-                "resumen": resumen,
-                "imagen": img,
-                "link": link,
-                # extras útiles para páginas detalle
-                "fecha": date_str,
-                "fuente": dom,
-            }
-        )
+        img = get_og_image(link) or serp_images_first(title) or \
+              "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+        pub = n.get("date") or n.get("date_utc") or ""
+        items.append({
+            "titulo": title,
+            "resumen": resumen,
+            "imagen":  img,
+            "link":    link,
+            "publicado": pub,
+            "categoria": categoria
+        })
     return items
 
 def dedupe(items):
-    seen = set()
-    out = []
+    seen, out = set(), []
     for it in items:
         key = (it["titulo"].lower(), it["link"])
-        if key in seen:
-            continue
-        seen.add(key)
-        out.append(it)
+        if key in seen: continue
+        seen.add(key); out.append(it)
     return out
 
 def run_category(cat_key):
-    max_items = MAX_ITEMS[cat_key]
     merged = []
     for src in SOURCES[cat_key]:
         try:
-            res = serpapi_google_news(src["domain"], num=20, when="1d", hl="es", gl="es")
-            got = build_items(res, limit_per_source=6)
-            merged.extend(got)
-            time.sleep(1)  # cuida el rate limit
+            res = serpapi_google_news(src["domain"], num=10, when="7d", hl="es")
+            res = recent_only(res, window_days=3)  # ← solo últimos 3 días
+            got = build_items(res, limit_per_source=4, categoria=cat_key)
+            merged.extend(got); time.sleep(1)
         except Exception as e:
             print(f"[{cat_key}] Error con {src['domain']}: {e}")
-    merged = dedupe(merged)[:max_items]
-    return merged
+    return dedupe(merged)[:MAX_ITEMS[cat_key]]
 
 def save_json(fecha, categoria, items):
     os.makedirs(OUTDIR, exist_ok=True)
@@ -215,29 +173,12 @@ def save_json(fecha, categoria, items):
 
 def main():
     if not SERPAPI_KEY:
-        raise SystemExit("Falta SERPAPI_API_KEY (configura el secret en GitHub).")
-    fecha = today_utc_str()  # SIEMPRE fecha del día en UTC
+        raise SystemExit("❌ Falta SERPAPI_API_KEY (configura el secret en GitHub).")
+    fecha = today_utc_str()
     anime = run_category("anime")
-    cine = run_category("cine")
+    cine  = run_category("cine")
     save_json(fecha, "anime", anime)
-    save_json(fecha, "cine", cine)
-    # música la añadimos luego si quieres
+    save_json(fecha, "cine",  cine)
 
 if __name__ == "__main__":
-    try:
-        main()
-    except SystemExit as e:
-        # Fallback de demo (por si olvidas el secret) para no romper la web
-        print("ERROR:", e)
-        demo = [
-            {
-                "titulo": "Demo — Configura SERPAPI_API_KEY",
-                "resumen": "Este es un elemento de prueba para validar el frontend.",
-                "imagen": "https://via.placeholder.com/400x225?text=Cultura+Friki",
-                "link": "#",
-                "fecha": today_utc_str(),
-                "fuente": "demo.local",
-            }
-        ]
-        save_json(today_utc_str(), "anime", demo)
-        save_json(today_utc_str(), "cine", demo)
+    main()
