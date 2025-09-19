@@ -25,17 +25,52 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
+      # ---------- DIAGNÓSTICO: antes de generar ----------
+      - name: Pre-check
+        run: |
+          echo "Rama y commit actual:"
+          git rev-parse --abbrev-ref HEAD
+          git log --oneline -1
+          echo "Fecha runner (UTC):"
+          date -u +'%Y-%m-%d %H:%M:%S UTC'
+          echo "Estructura a 3 niveles:"
+          find . -maxdepth 3 -type f | sort
+
+      # ---------- EJECUTAR GENERADOR + LISTADO ----------
       - name: Run generator
         env:
-          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}   # <- OBLIGATORIO
-          OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY }}    # <- opcional (tu script no lo usa aún)
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
         run: |
+          set -e
+          echo ">>> Ejecutando scripts/generar_jsons.py ..."
           python scripts/generar_jsons.py
+          echo "---- LISTADO noticias/ tras generar ----"
+          ls -la noticias || true
+          echo "---- Vista previa (primeras 20 líneas) ----"
+          for f in noticias/*.json; do
+            echo "==> $f"
+            head -n 20 "$f" || true
+            echo
+          done
 
+      # ---------- COMMIT & PUSH con info de estado ----------
       - name: Commit & push JSON
         run: |
+          set -e
           git config user.name  "actions-bot"
           git config user.email "actions@github.com"
-          git add noticias/*.json || true
-          git commit -m "news(oficiales): $(date -u +%F)" || echo "No changes"
-          git push
+
+          echo "---- GIT STATUS (antes de add) ----"
+          git status --porcelain
+
+          git add -A
+          echo "---- GIT STATUS (index) ----"
+          git status
+
+          # Si no hay cambios, no hacemos commit (para no spamear deploys)
+          if git diff --cached --quiet; then
+            echo "No changes (nada nuevo que commitear)."
+          else
+            git commit -m "news: $(date -u +%F)"
+            git push
+          fi
