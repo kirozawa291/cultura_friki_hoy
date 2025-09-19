@@ -212,7 +212,7 @@
     <div class="status">Activa JavaScript para ver las noticias.</div>
   </noscript>
 
-  <!-- ====================== JS EMBEBIDO (no necesitas archivos extra) ====================== -->
+  <!-- ====================== JS EMBEBIDO ====================== -->
   <script>
     // ---------- CONFIG ----------
     const TIPOS = [
@@ -220,21 +220,24 @@
       { tipo: "cine",   etiqueta: "Cine"   },
       { tipo: "musica", etiqueta: "Música" }
     ];
-    const NUM_DIAS = 7;            // ¿cuántos días hacia atrás mostrar?
-    const BASE_PATH = "noticias";  // carpeta donde subes tus JSON
+    const NUM_DIAS = 14;            // miramos 14 días hacia atrás
+    const BASE_PATH = "noticias";   // carpeta con los JSON
+    const DEBUG = false;            // ponlo true si quieres ver en consola qué URLs intenta
 
     // ---------- HELPERS ----------
-    function fechaDesdeOffset(n=0){
-      const d=new Date(); d.setDate(d.getDate()-n);
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth()+1).padStart(2,"0");
-      const dd = String(d.getDate()).padStart(2,"0");
+    // FECHA EN UTC para que coincida con lo que escribe el runner (evita desfases)
+    function fechaUTCDesdeOffset(n=0){
+      const d = new Date();
+      d.setUTCDate(d.getUTCDate()-n);
+      const yyyy = d.getUTCFullYear();
+      const mm = String(d.getUTCMonth()+1).padStart(2,"0");
+      const dd = String(d.getUTCDate()).padStart(2,"0");
       return `${yyyy}-${mm}-${dd}`;
     }
     function fechaLargaES(iso){
       const [y,m,d]=iso.split("-").map(Number);
       return new Intl.DateTimeFormat("es-ES",{day:"numeric",month:"long",year:"numeric"})
-        .format(new Date(y,m-1,d));
+        .format(new Date(Date.UTC(y,m-1,d)));
     }
     async function fetchJSONSafe(path){
       try{
@@ -261,16 +264,18 @@
       items.forEach(n=>{
         const a = el("a","news-card");
         a.href = n.link || "#";
-        a.target = "_blank"; // abre en nueva pestaña
+        a.target = "_blank";
 
         const img = el("img","news-img");
+        img.loading = "lazy";
         img.src = n.imagen || "";
         img.alt = n.titulo || "Noticia";
+        img.onerror = () => { img.style.display="none"; };
 
         const c = el("div","news-content");
         c.appendChild(el("h2",null,n.titulo || "Sin título"));
         c.appendChild(el("p",null,n.resumen || ""));
-        c.appendChild(el("span","tag",n.tag || ""));
+        if(n.tag) c.appendChild(el("span","tag",n.tag));
 
         a.appendChild(img);
         a.appendChild(c);
@@ -289,16 +294,15 @@
       let pintóAlgo = false;
 
       for(let i=0;i<NUM_DIAS;i++){
-        const fecha = fechaDesdeOffset(i);
+        const fecha = fechaUTCDesdeOffset(i);   // <-- clave: usar UTC
         let acumuladas = [];
 
-        // para cada tipo (anime/cine/musica) intenta cargar el JSON de esa fecha
         for(const t of TIPOS){
           const path = `${BASE_PATH}/${fecha}-${t.tipo}.json`;
+          if (DEBUG) console.log("Intento:", path);
           const arr = await fetchJSONSafe(path);
           if(Array.isArray(arr) && arr.length){
-            // === SOLO 2 TITULARES POR CATEGORÍA/DÍA EN EL INICIO ===
-            const top = arr.slice(0, 2);
+            const top = arr.slice(0, 2); // 2 por categoría/día
             const conTag = top.map(n => ({
               titulo: n.titulo || "",
               resumen: n.resumen || "",
